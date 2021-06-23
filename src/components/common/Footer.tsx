@@ -4,7 +4,7 @@ import { Text, Divider } from '@geist-ui/react';
 /**
  * Footer component
  */
-export const MFooter: React.FC = () => {
+export const Footer: React.FC = () => {
   return (
     <>
       <Divider></Divider>
@@ -17,3 +17,5 @@ export const MFooter: React.FC = () => {
     </>
   );
 };
+
+export default Footer;

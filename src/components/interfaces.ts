@@ -1,8 +1,3 @@
-export interface MheaderProps {
-  title: string;
-}
-
-export interface MnavbarProps {
-  theme: 'light' | 'dark';
-  page: string;
+export interface exampleInterface {
+  name: string;
 }

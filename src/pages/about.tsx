@@ -7,7 +7,7 @@ const Home = (): React.ReactNode => {
   return (
     <>
       <Page>
-        Home Page
+        About page
       </Page>
     </>
   );

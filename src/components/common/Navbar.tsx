@@ -1,25 +1,18 @@
 import React from 'react';
-import { MnavbarProps } from '../../interfaces';
-import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { Button, Row, Link, ButtonDropdown } from '@geist-ui/react';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { Menu } from '@geist-ui/react-icons';
+import * as Global from "../Constants";
 
 /**
- * Mnavbar component
+ * Navbar component
  */
 
-export const Mnavbar: React.FC<MnavbarProps> = (props): React.ReactElement => {
+export const Navbar: React.FC = (): React.ReactElement => {
   const [session, loading] = useSession();
-
-  const pageType = {
-    Home: '',
-    Browse: '',
-    Search: '',
-    Other: ''
-  };
-
-  if (props.page in pageType) pageType[props.page] = 'active';
+  const router = useRouter();
+  const initialPath = router.route.split('/')[1];
 
   const navigatePath = (path) => (location.href = path);
 
@@ -28,18 +21,17 @@ export const Mnavbar: React.FC<MnavbarProps> = (props): React.ReactElement => {
       <Row className="navbar-row">
         <div className="left-nav-container">
           <Link className="brand-name" href="/" block>
-            RESUVILLE
+            {Global.metadata.name}
           </Link>
           <div className="left-links-container">
-            <Link className={pageType['Home']} href="/" block>
-              Home
-            </Link>
-            <Link className={pageType['Browse']} href="/browse" block>
-              Browse
-            </Link>
-            <Link className={pageType['Search']} href="/search" block>
-              Search
-            </Link>
+            {Object.keys(Global.metadata.structure).map((route, i) => {
+              const routeData = Global.metadata.structure[route];
+              return (
+                <Link key={`nav-${i}`} className={(initialPath == route) && "active"} href={routeData.href} block>
+                  {routeData.title}
+                </Link>
+              )
+            })}
           </div>
         </div>
         <div className="right-nav-container">
@@ -53,21 +45,22 @@ export const Mnavbar: React.FC<MnavbarProps> = (props): React.ReactElement => {
               <ButtonDropdown.Item main disabled>
                 @{session.user.name}
               </ButtonDropdown.Item>
-              <ButtonDropdown.Item onClick={() => navigatePath('/profile')}>Profile</ButtonDropdown.Item>
               <ButtonDropdown.Item type="error" onClick={signOut}>
                 Sign out
               </ButtonDropdown.Item>
             </ButtonDropdown>
           )}
           <div className="hamburger-nav">
-            {/* <Button auto size="small" icon={<Menu/>}></Button> */}
             <ButtonDropdown auto size="small">
               <ButtonDropdown.Item main>
                 <Menu />
               </ButtonDropdown.Item>
-              <ButtonDropdown.Item onClick={() => navigatePath('/')}>Home</ButtonDropdown.Item>
-              <ButtonDropdown.Item onClick={() => navigatePath('/browse')}>Browse</ButtonDropdown.Item>
-              <ButtonDropdown.Item onClick={() => navigatePath('/search')}>Search</ButtonDropdown.Item>
+              {Object.keys(Global.metadata.structure).map((route, i) => {
+                const routeData = Global.metadata.structure[route];
+                return (
+                  <ButtonDropdown.Item key={`dropdown-btn-${i}`} onClick={() => navigatePath(routeData.href)}>{routeData.title}</ButtonDropdown.Item>
+                )
+              })}
             </ButtonDropdown>
           </div>
         </div>
@@ -76,7 +69,4 @@ export const Mnavbar: React.FC<MnavbarProps> = (props): React.ReactElement => {
   );
 };
 
-Mnavbar.propTypes = {
-  theme: PropTypes.any.isRequired,
-  page: PropTypes.any.isRequired
-};
+export default Navbar;
