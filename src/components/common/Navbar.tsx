@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Button, Row, Link, ButtonDropdown } from '@geist-ui/react';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { Menu } from '@geist-ui/react-icons';
-import * as Global from "../Constants";
+import * as constants from "../Constants";
 
 /**
  * Navbar component
@@ -21,11 +21,11 @@ export const Navbar: React.FC = (): React.ReactElement => {
       <Row className="navbar-row">
         <div className="left-nav-container">
           <Link className="brand-name" href="/" block>
-            {Global.metadata.name}
+            {constants.metadata.name}
           </Link>
           <div className="left-links-container">
-            {Object.keys(Global.metadata.structure).map((route, i) => {
-              const routeData = Global.metadata.structure[route];
+            {Object.keys(constants.metadata.structure).map((route, i) => {
+              const routeData = constants.metadata.structure[route];
               return (
                 <Link key={`nav-${i}`} className={(initialPath == route) && "active"} href={routeData.href} block>
                   {routeData.title}
@@ -55,8 +55,8 @@ export const Navbar: React.FC = (): React.ReactElement => {
               <ButtonDropdown.Item main>
                 <Menu />
               </ButtonDropdown.Item>
-              {Object.keys(Global.metadata.structure).map((route, i) => {
-                const routeData = Global.metadata.structure[route];
+              {Object.keys(constants.metadata.structure).map((route, i) => {
+                const routeData = constants.metadata.structure[route];
                 return (
                   <ButtonDropdown.Item key={`dropdown-btn-${i}`} onClick={() => navigatePath(routeData.href)}>{routeData.title}</ButtonDropdown.Item>
                 )
