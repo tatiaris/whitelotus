@@ -6,12 +6,20 @@ export const metadata = {
     "": {
       title: "Home",
       href: "/",
-      description: "Home description"
+      description: "Home description",
+      public: true
     },
     "about": {
       title: "About",
       href: "/about",
-      description: "About description"
+      description: "About description",
+      public: true
+    },
+    "_error": {
+      title: "Error",
+      href: "/_error",
+      description: "Error",
+      public: false
     }
   }
 }

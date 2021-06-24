@@ -1,20 +1,26 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { Button, Row, Link, ButtonDropdown } from '@geist-ui/react';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { Menu } from '@geist-ui/react-icons';
 import * as constants from "../Constants";
+import { getInitialPath, navigatePath } from '../Helper';
 
 /**
  * Navbar component
  */
-
 export const Navbar: React.FC = (): React.ReactElement => {
   const [session, loading] = useSession();
-  const router = useRouter();
-  const initialPath = router.route.split('/')[1];
+  const initialPath = getInitialPath();
 
-  const navigatePath = (path) => (location.href = path);
+  const navbarLinks = [];
+  const navDropdownLinks = [];
+  Object.keys(constants.metadata.structure).map((route, i) => {
+    const routeData = constants.metadata.structure[route];
+    if (routeData.public) {
+      navbarLinks.push(<Link key={`nav-${i}`} className={(initialPath == route) && "active"} href={routeData.href} block>{routeData.title}</Link>)
+      navDropdownLinks.push(<ButtonDropdown.Item key={`dropdown-btn-${i}`} onClick={() => navigatePath(routeData.href)}>{routeData.title}</ButtonDropdown.Item>)
+    }
+  })
 
   return (
     <>
@@ -24,14 +30,7 @@ export const Navbar: React.FC = (): React.ReactElement => {
             {constants.metadata.name}
           </Link>
           <div className="left-links-container">
-            {Object.keys(constants.metadata.structure).map((route, i) => {
-              const routeData = constants.metadata.structure[route];
-              return (
-                <Link key={`nav-${i}`} className={(initialPath == route) && "active"} href={routeData.href} block>
-                  {routeData.title}
-                </Link>
-              )
-            })}
+            {navbarLinks}
           </div>
         </div>
         <div className="right-nav-container">
@@ -55,12 +54,7 @@ export const Navbar: React.FC = (): React.ReactElement => {
               <ButtonDropdown.Item main>
                 <Menu />
               </ButtonDropdown.Item>
-              {Object.keys(constants.metadata.structure).map((route, i) => {
-                const routeData = constants.metadata.structure[route];
-                return (
-                  <ButtonDropdown.Item key={`dropdown-btn-${i}`} onClick={() => navigatePath(routeData.href)}>{routeData.title}</ButtonDropdown.Item>
-                )
-              })}
+              {navDropdownLinks}
             </ButtonDropdown>
           </div>
         </div>
