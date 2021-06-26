@@ -1,9 +1,17 @@
 import nextConnect from 'next-connect';
+import { inventory } from './db';
 
 const handler = nextConnect();
 
 handler.get(async (req, res) => {
   let responseData = { success: false, message: 'Invalid GET Request' };
+  if (inventory) {
+    responseData = {
+      success: true,
+      message: 'Successful GET Request',
+      content: inventory
+    }
+  }
   res.json(responseData);
 });
 
