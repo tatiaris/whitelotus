@@ -17,6 +17,9 @@ h4 {
   justify-content: center;
   align-items: center;
 }
+.gpay-card-info-container {
+  min-width: 100% !important;
+}
 /* GENERAL SETTINGS END */
 
 /* Navbar css BEGIN */
@@ -89,8 +92,9 @@ h4 {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 }
 .item-card-img-container {
-  width: 200px;
+  width: 45%;
   height: 100%;
+  position: relative;
 }
 .item-card-img {
   width: 100%;
@@ -98,7 +102,7 @@ h4 {
   object-fit: cover;
 }
 .item-card-details-container {
-  width: 250px;
+  width: 55%;
   border-radius: 0px 5px 5px 0px;
   padding: 10px;
 }
@@ -108,4 +112,42 @@ h4 {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+.item-card-discount-tag {
+  position: absolute;
+  top: 5%;
+  padding: 0 10px;
+  background-color: #8aff79;
+  clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+}
+.cart-pay-btn-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
+}
 /* Shop css END */
+
+/* MOBILE SCREEN SIZE START */
+@media (max-width: 550px) {
+  .left-links-container {
+    display: none;
+  }
+  .hamburger-nav {
+    display: block;
+    margin-left: 10px;
+  }
+  .item-card {
+    display: block;
+    width: max-content;
+    height: max-content;
+  }
+  .item-card-img-container {
+    width: 100%;
+    height: 200px;
+    position: relative;
+  }
+  .item-card-details-container {
+    width: 100%;
+  }
+}
+/* MOBILE SCREEN SIZE END */
