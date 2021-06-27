@@ -6,9 +6,7 @@ const Home = (): React.ReactNode => {
   const [session] = useSession();
   return (
     <>
-      <Page>
-        About page
-      </Page>
+      <Page>About page</Page>
     </>
   );
 };

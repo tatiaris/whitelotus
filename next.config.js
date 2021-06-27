@@ -9,7 +9,7 @@ module.exports = {
             value: "default-src * 'unsafe-inline' 'unsafe-eval';"
           }
         ]
-      },
-    ]
-  },
-}
+      }
+    ];
+  }
+};

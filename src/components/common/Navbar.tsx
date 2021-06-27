@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Row, Link, ButtonDropdown } from '@geist-ui/react';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { Menu } from '@geist-ui/react-icons';
-import * as constants from "../Constants";
+import * as constants from '../Constants';
 import { getInitialPath, navigatePath } from '../Helper';
 
 /**
@@ -17,10 +17,18 @@ export const Navbar: React.FC = (): React.ReactElement => {
   Object.keys(constants.metadata.structure).map((route, i) => {
     const routeData = constants.metadata.structure[route];
     if (routeData.public) {
-      navbarLinks.push(<Link key={`nav-${i}`} className={(initialPath == route) && "active"} href={routeData.href} block>{routeData.title}</Link>)
-      navDropdownLinks.push(<ButtonDropdown.Item key={`dropdown-btn-${i}`} onClick={() => navigatePath(routeData.href)}>{routeData.title}</ButtonDropdown.Item>)
+      navbarLinks.push(
+        <Link key={`nav-${i}`} className={initialPath == route && 'active'} href={routeData.href} block>
+          {routeData.title}
+        </Link>
+      );
+      navDropdownLinks.push(
+        <ButtonDropdown.Item key={`dropdown-btn-${i}`} onClick={() => navigatePath(routeData.href)}>
+          {routeData.title}
+        </ButtonDropdown.Item>
+      );
     }
-  })
+  });
 
   return (
     <>
@@ -29,9 +37,7 @@ export const Navbar: React.FC = (): React.ReactElement => {
           <Link className="brand-name" href="/" block>
             {constants.metadata.name}
           </Link>
-          <div className="left-links-container">
-            {navbarLinks}
-          </div>
+          <div className="left-links-container">{navbarLinks}</div>
         </div>
         <div className="right-nav-container">
           {!session && !loading && (

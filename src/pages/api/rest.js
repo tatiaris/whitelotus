@@ -10,7 +10,7 @@ handler.get(async (req, res) => {
       success: true,
       message: 'Successful GET Request',
       content: inventory
-    }
+    };
   }
   res.json(responseData);
 });

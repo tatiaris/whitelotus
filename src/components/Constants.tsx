@@ -1,31 +1,31 @@
 export const metadata = {
-  name: "Web App Template",
-  abbrName: "WAT",
-  baseURL: "https://web-app-template.vercel.app",
+  name: 'Web App Template',
+  abbrName: 'WAT',
+  baseURL: 'https://web-app-template.vercel.app',
   structure: {
-    "": {
-      title: "Home",
-      href: "/",
-      description: "Home description",
+    '': {
+      title: 'Home',
+      href: '/',
+      description: 'Home description',
       public: true
     },
-    "about": {
-      title: "About",
-      href: "/about",
-      description: "About description",
+    about: {
+      title: 'About',
+      href: '/about',
+      description: 'About description',
       public: true
     },
-    "shop": {
-      title: "Shop",
-      href: "/shop",
-      description: "Shop items",
+    shop: {
+      title: 'Shop',
+      href: '/shop',
+      description: 'Shop items',
       public: true
     },
-    "_error": {
-      title: "Error",
-      href: "/_error",
-      description: "Error",
+    _error: {
+      title: 'Error',
+      href: '/_error',
+      description: 'Error',
       public: false
     }
   }
-}
+};

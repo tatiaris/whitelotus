@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import * as constants from "../Constants";
+import * as constants from '../Constants';
 
 /**
  * Header component
@@ -13,7 +13,9 @@ export const Header: React.FC = () => {
 
   return (
     <Head>
-      <title>{constants.metadata.abbrName} | {routeMetaData.title}</title>
+      <title>
+        {constants.metadata.abbrName} | {routeMetaData.title}
+      </title>
       <link rel="icon" href="/favicon.ico" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
