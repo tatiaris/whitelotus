@@ -18,7 +18,7 @@ const Shop = ({ itemsArray }): React.ReactNode => {
 };
 
 Shop.getInitialProps = async () => {
-  const res = await fetch('http://localhost:3000/api/rest')
+  const res = await fetch(`http://${process.env.ENVIRONMENT=="test" ? "localhost:3000" : "rt-template.vercel.app"}/api/rest`)
   const json = await res.json()
   return { itemsArray: json.content }
 }
