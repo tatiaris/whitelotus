@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Row, Link, ButtonDropdown } from '@geist-ui/react';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { Menu } from '@geist-ui/react-icons';
-import * as constants from '../Constants';
+import { metadata } from '../Metadata';
 import { getInitialPath, navigatePath } from '../Helper';
 
 /**
@@ -14,8 +14,8 @@ export const Navbar: React.FC = (): React.ReactElement => {
 
   const navbarLinks = [];
   const navDropdownLinks = [];
-  Object.keys(constants.metadata.structure).map((route, i) => {
-    const routeData = constants.metadata.structure[route];
+  Object.keys(metadata.structure).map((route, i) => {
+    const routeData = metadata.structure[route];
     if (routeData.public) {
       navbarLinks.push(
         <Link key={`nav-${i}`} className={initialPath == route && 'active'} href={routeData.href} block>
@@ -35,7 +35,7 @@ export const Navbar: React.FC = (): React.ReactElement => {
       <Row className="navbar-row">
         <div className="left-nav-container">
           <Link className="brand-name" href="/" block>
-            {constants.metadata.name}
+            {metadata.name}
           </Link>
           <div className="left-links-container">{navbarLinks}</div>
         </div>

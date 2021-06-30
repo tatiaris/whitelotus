@@ -1,0 +1,67 @@
+{
+  "title": {
+    "type": "text",
+    "name": "title",
+    "label": "Title",
+    "placeholder": "iPhone 12 Pro",
+    "value": ""
+  },
+  "company": {
+    "type": "text",
+    "name": "company",
+    "label": "Company/Brand",
+    "placeholder": "Apple",
+    "value": ""
+  },
+  "picture": {
+    "type": "text",
+    "name": "picture",
+    "label": "Image URL",
+    "placeholder": "https://picsum.photos/250",
+    "format": "^https:\/\/.+\\..+",
+    "helperText": "Must start with \"https\"",
+    "value": ""
+  },
+  "price": {
+    "type": "text",
+    "name": "price",
+    "label": "Price (USD)",
+    "placeholder": "85",
+    "format": "^[1-9][0-9]*?$",
+    "value": ""
+  },
+  "discount": {
+    "type": "text",
+    "name": "discount",
+    "label": "Discount (%)",
+    "placeholder": "20",
+    "format": "^[0-9][0-9]?$",
+    "errMsg": "Invalid discount \"value\"",
+    "value": ""
+  },
+  "quantity": {
+    "type": "text",
+    "name": "quantity",
+    "label": "Quantity",
+    "placeholder": "26",
+    "format": "^[0-9][0-9]*?$",
+    "value": ""
+  },
+  "tags": {
+    "type": "text",
+    "name": "tags",
+    "label": "Tags",
+    "placeholder": "electronics, mobile, phone, apple",
+    "fill": true,
+    "helperText": "comma separated list",
+    "value": ""
+  },
+  "description": {
+    "type": "text",
+    "name": "description",
+    "label": "Description",
+    "placeholder": "The most popular mobile device in the market...",
+    "fill": true,
+    "value": ""
+  }
+}

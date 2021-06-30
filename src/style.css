@@ -2,15 +2,46 @@
 body {
   background-color: white;
 }
-h4 {
+h4, h5 {
   margin: 0 !important;
+}
+input[type=text] {
+  width: 100%;
+  padding: 0 10px;
+  line-height: 2.5;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 5px #bebebe, inset -1px -1px 5px #ffffff;
+  transition: 200ms;
+}
+input[type=text]:focus {
+  border: 0 !important;
+}
+.input-container {
+  width: 250px;
+}
+.input-container.fill {
+  width: 100%;
+}
+.input-helper-text {
+  color: #666666;
+  font-size: small;
+  font-style: italic;
 }
 #__next {
   overflow-x: visible !important;
 }
+.container {
+  padding: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 15px 0 rgba(0,0,0,.1);
+}
 .flex-wrap-container {
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
 }
 .flex-center {
   display: flex;
@@ -80,7 +111,6 @@ h4 {
 /* Shop css START */
 .item-card {
   display: flex;
-  margin: 10px;
   width: 450px;
   height: 200px;
   border-radius: 5px;

@@ -1,9 +1,7 @@
 import React from 'react';
 import { Page } from '@geist-ui/react';
-import { signIn, useSession } from 'next-auth/client';
 
-const Home = (): React.ReactNode => {
-  const [session] = useSession();
+const About = (): React.ReactNode => {
   return (
     <>
       <Page>About page</Page>
@@ -11,4 +9,4 @@ const Home = (): React.ReactNode => {
   );
 };
 
-export default Home;
+export default About;

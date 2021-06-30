@@ -29,12 +29,16 @@ export const ItemCard: React.FC<ItemCardProps> = (props) => {
       <div className="item-card">
         {item.discount > 0 && <div className="item-card-discount-tag">{item.discount}% off!</div>}
         <div className="item-card-img-container">
-          <img className="item-card-img" src={item.picture} alt="" />
+          <a href="/">
+            <img className="item-card-img" src={item.picture} alt="" />
+          </a>
         </div>
         <div className="item-card-details-container">
           <div style={{ height: '100px', display: 'flex' }}>
             <div style={{ width: '210px' }}>
-              <a href="#"><h4 className="item-card-title">{item.title}</h4></a>
+              <a href="/">
+                <h4 className="item-card-title">{item.title}</h4>
+              </a>
               <span>{item.company}</span>
               <br />
               <i>{item.quantity > 0 ? <span style={{ color: '#666' }}>In stock</span> : <span style={{ color: 'red' }}>Out of stock</span>}</i>

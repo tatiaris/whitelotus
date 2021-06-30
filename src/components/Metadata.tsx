@@ -21,6 +21,12 @@ export const metadata = {
       description: 'Shop items',
       public: true
     },
+    create: {
+      title: 'Create',
+      href: '/create',
+      description: 'Create items',
+      public: true
+    },
     _error: {
       title: 'Error',
       href: '/_error',
