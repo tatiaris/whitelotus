@@ -1,20 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ItemCard from '../shopping/ItemCard';
 import StringInput from '../ui/StringInput';
-import CreateItemFormData from '../../constants/forms/create-item.json';
+import itemFormConfig from '../../constants/forms/create-item.json';
+import { Button, Divider, useToasts } from '@geist-ui/react';
+import { addToDatabase } from '../Helper';
 
 /**
  * CreateItemForm component
  */
 export const CreateItemForm: React.FC = () => {
-  const itemFormConfig = CreateItemFormData;
-
+  const [, setToast] = useToasts();
   const [formConfig, setFormConfig] = useState(itemFormConfig);
   const updateFormConfig = (key, val) => {
     const newFormConfig = JSON.parse(JSON.stringify(formConfig));
     newFormConfig[key].value = val;
     setFormConfig(newFormConfig);
   };
+
+  const reorganizeItemObject = (itemData) => {
+    let newItemObject = {};
+    Object.keys(itemData).map(key => {
+      newItemObject[key] = itemData[key].value;
+      if (key == "discount" || key == "price" || key == "quantity") {
+        newItemObject[key] = parseFloat(itemData[key].value);
+      }
+      else if (key == "tags") {
+        let tagsArray = itemData[key].value.split(',').map((v: string) => v.trim())
+        newItemObject[key] = tagsArray;
+      }
+    })
+    return newItemObject;
+  }
+
+  const createItem = () => {
+    const newItem = reorganizeItemObject(formConfig);
+    addToDatabase('item', newItem, setToast);
+  }
 
   return (
     <div className="container">
@@ -27,6 +48,7 @@ export const CreateItemForm: React.FC = () => {
         })}
       </div>
       <br />
+      <Divider y={5}>Preview</Divider>
       <ItemCard
         data={{
           _id: 'temp',
@@ -41,6 +63,8 @@ export const CreateItemForm: React.FC = () => {
           tags: formConfig.tags.value.split(',')
         }}
       />
+      <Divider y={5}>Submit</Divider>
+      <Button type="success-light" onClick={createItem}>CREATE</Button>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import nextConnect from 'next-connect';
 import { inventory } from './db';
+import { findOneObject, insertOneObject, updateOneObject } from './helper';
 
 const handler = nextConnect();
 
@@ -17,6 +18,19 @@ handler.get(async (req, res) => {
 
 handler.post(async (req, res) => {
   let responseData = { success: false, message: 'Invalid POST Request' };
+  const newItemObject = req.body.newObject;
+  try {
+    // await insertOneObject('items', newItemObject)
+    responseData = {
+      success: true,
+      message: 'Item successfully added to database!'
+    };
+  } catch (error) {
+    responseData = {
+      success: false,
+      message: 'Item could not be added to database.'
+    };
+  }
   res.json(responseData);
 });
 

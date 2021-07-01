@@ -6,9 +6,9 @@ export const findOneObject = async (collection, params) => {
   return returnObj;
 };
 
-export const insertOneObject = async (collection, params) => {
+export const insertOneObject = async (collection, object) => {
   const { db } = await connectToDatabase();
-  const returnObj = await db.collection(collection).insertOne(params);
+  const returnObj = await db.collection(collection).insertOne(object);
   return returnObj;
 };
 
