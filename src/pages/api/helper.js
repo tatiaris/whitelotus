@@ -23,3 +23,9 @@ export const getAllObjects = async (collection) => {
   const returnObj = await db.collection(collection).find().toArray();
   return returnObj;
 };
+
+export const deleteOneObject = async (collection, query) => {
+  const { db } = await connectToDatabase();
+  const returnObj = await db.collection(collection).deleteOne(query)
+  return returnObj;
+}
