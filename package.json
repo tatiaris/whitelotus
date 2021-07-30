@@ -15,7 +15,7 @@
     "@geist-ui/react": "2.1.5",
     "@geist-ui/react-icons": "1.0.1",
     "@google-pay/button-react": "^2.4.0",
-    "@material-ui/core": "4.11.4",
+    "@material-ui/core": "4.12.3",
     "@material-ui/icons": "4.11.2",
     "mongodb": "3.6.9",
     "next": "11.0.1",
