@@ -5,7 +5,7 @@ const collectionObjextTypeMap = {
   items: 'Item'
 };
 
-export const handleGetRequest = (collection, req, res) => {
+export const handleGetRequest = async (collection, req, res) => {
   let responseObject = { success: false, message: 'Invalid GET Request' };
   const objectType = collectionObjextTypeMap[collection];
   try {
@@ -27,7 +27,7 @@ export const handleGetRequest = (collection, req, res) => {
   res.json(responseObject);
 };
 
-export const handlePostRequest = (collection, req, res) => {
+export const handlePostRequest = async (collection, req, res) => {
   let responseObject = { success: false, message: 'Invalid POST Request' };
   const newObject = req.body.newObject;
   const objectType = collectionObjextTypeMap[collection];
@@ -47,7 +47,7 @@ export const handlePostRequest = (collection, req, res) => {
   res.json(responseObject);
 };
 
-export const handlePutRequest = (collection, req, res) => {
+export const handlePutRequest = async (collection, req, res) => {
   let responseObject = { success: false, message: 'Invalid PUT Request' };
   const updatedObject = req.body.updatedObject;
   const objectType = collectionObjextTypeMap[collection];
@@ -69,7 +69,7 @@ export const handlePutRequest = (collection, req, res) => {
   res.json(responseObject);
 };
 
-export const handleDeleteRequest = (collection, req, res) => {
+export const handleDeleteRequest = async (collection, req, res) => {
   let responseObject = { success: false, message: 'Invalid DELETE Request' };
   const objectToBeDeletedUID = req.query.uid;
   const objectType = collectionObjextTypeMap[collection];
