@@ -2,7 +2,7 @@ import nextConnect from 'next-connect';
 import { handleDeleteRequest, handleGetRequest, handlePostRequest, handlePutRequest } from './crud';
 
 const handler = nextConnect();
-const collectionName = "items";
+const collectionName = 'items';
 
 handler.get(async (req, res) => handleGetRequest(collectionName, req, res));
 handler.post(async (req, res) => handlePostRequest(collectionName, req, res));

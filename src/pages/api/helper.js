@@ -26,6 +26,6 @@ export const getAllObjects = async (collection) => {
 
 export const deleteOneObject = async (collection, query) => {
   const { db } = await connectToDatabase();
-  const returnObj = await db.collection(collection).deleteOne(query)
+  const returnObj = await db.collection(collection).deleteOne(query);
   return returnObj;
-}
+};

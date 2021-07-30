@@ -33,7 +33,7 @@ export const addItemToCard = (itemdId: string): void => {
   console.log(`adding item: ${itemdId} to the cart`);
 };
 
-export const addToDatabase = (objectType: string, newObject: object, toastFunction) => {
+export const addToDatabase = (objectType: string, newObject: any, toastFunction) => {
   fetch(`/api/${objectType}`, {
     method: 'POST',
     headers: {
@@ -47,6 +47,6 @@ export const addToDatabase = (objectType: string, newObject: object, toastFuncti
     })
     .catch((error) => {
       console.error('Error:', error);
-      sendNotification(toastFunction, false, "Could not add to database");
+      sendNotification(toastFunction, false, 'Could not add to database');
     });
-}
+};

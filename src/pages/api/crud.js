@@ -1,18 +1,18 @@
-import { deleteOneObject, findOneObject, getAllObjects, insertOneObject, updateOneObject } from "./helper";
+import { ObjectID } from 'mongodb';
+import { deleteOneObject, findOneObject, getAllObjects, insertOneObject, updateOneObject } from './helper';
 
 const collectionObjextTypeMap = {
-  'items': 'Item'
-}
+  items: 'Item'
+};
 
 export const handleGetRequest = (collection, req, res) => {
   let responseObject = { success: false, message: 'Invalid GET Request' };
   const objectType = collectionObjextTypeMap[collection];
   try {
-    if (req.query.amount == "all") {
+    if (req.query.amount == 'all') {
       const collectionData = await getAllObjects(collection);
       responseObject = { success: true, message: `${objectType} successfully fetched!`, content: collectionData };
-    }
-    else if (req.query.amount == "single") {
+    } else if (req.query.amount == 'single') {
       const objectUID = req.query.uid;
       const objectData = await findOneObject(collection, { _id: ObjectID(objectUID) });
       responseObject = { success: true, message: `${objectType} successfully fetched!`, content: objectData };
@@ -25,14 +25,14 @@ export const handleGetRequest = (collection, req, res) => {
     };
   }
   res.json(responseObject);
-}
+};
 
 export const handlePostRequest = (collection, req, res) => {
   let responseObject = { success: false, message: 'Invalid POST Request' };
   const newObject = req.body.newObject;
   const objectType = collectionObjextTypeMap[collection];
   try {
-    await insertOneObject(collection, newObject)
+    await insertOneObject(collection, newObject);
     responseObject = {
       success: true,
       message: `${objectType} successfully added to database!`
@@ -45,7 +45,7 @@ export const handlePostRequest = (collection, req, res) => {
     };
   }
   res.json(responseObject);
-}
+};
 
 export const handlePutRequest = (collection, req, res) => {
   let responseObject = { success: false, message: 'Invalid PUT Request' };
@@ -54,7 +54,7 @@ export const handlePutRequest = (collection, req, res) => {
   try {
     const objectUID = updatedObject._id;
     delete updatedObject._id;
-    await updateOneObject(collection, { _id: ObjectID(objectUID) }, updatedObject)
+    await updateOneObject(collection, { _id: ObjectID(objectUID) }, updatedObject);
     responseObject = {
       success: true,
       message: `${objectType} successfully updated!`
@@ -67,7 +67,7 @@ export const handlePutRequest = (collection, req, res) => {
     };
   }
   res.json(responseObject);
-}
+};
 
 export const handleDeleteRequest = (collection, req, res) => {
   let responseObject = { success: false, message: 'Invalid DELETE Request' };
@@ -87,4 +87,4 @@ export const handleDeleteRequest = (collection, req, res) => {
     };
   }
   res.json(responseObject);
-}
+};

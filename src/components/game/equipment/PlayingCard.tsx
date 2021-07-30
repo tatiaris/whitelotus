@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
  */
 interface PlayingCardData {
   value: string;
-  suit: "hearts" | "spades" | "diamonds" | "clubs";
+  suit: 'hearts' | 'spades' | 'diamonds' | 'clubs';
 }
 interface PlayingCardProps {
   data: PlayingCardData;

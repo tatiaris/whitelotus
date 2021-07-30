@@ -16,8 +16,8 @@ export const GPayButton: React.FC<GPayButtonInterface> = (props) => {
     <GooglePayButton
       buttonSizeMode="fill"
       environment={process.env.ENVIRONMENT == 'production' ? 'PRODUCTION' : 'TEST'}
-      onError={() => setToast({text: 'Payment did not go through.', type: 'error'})}
-      onCancel={() => setToast({text: 'Payment cancelled.', type: 'error'})}
+      onError={() => setToast({ text: 'Payment did not go through.', type: 'error' })}
+      onCancel={() => setToast({ text: 'Payment cancelled.', type: 'error' })}
       paymentRequest={{
         apiVersion: 2,
         apiVersionMinor: 0,

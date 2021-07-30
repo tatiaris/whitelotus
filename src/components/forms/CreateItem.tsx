@@ -18,24 +18,23 @@ export const CreateItemForm: React.FC = () => {
   };
 
   const reorganizeItemObject = (itemData) => {
-    let newItemObject = {};
-    Object.keys(itemData).map(key => {
+    const newItemObject = {};
+    Object.keys(itemData).map((key) => {
       newItemObject[key] = itemData[key].value;
-      if (key == "discount" || key == "price" || key == "quantity") {
+      if (key == 'discount' || key == 'price' || key == 'quantity') {
         newItemObject[key] = parseFloat(itemData[key].value);
-      }
-      else if (key == "tags") {
-        let tagsArray = itemData[key].value.split(',').map((v: string) => v.trim())
+      } else if (key == 'tags') {
+        const tagsArray = itemData[key].value.split(',').map((v: string) => v.trim());
         newItemObject[key] = tagsArray;
       }
-    })
+    });
     return newItemObject;
-  }
+  };
 
   const createItem = () => {
     const newItem = reorganizeItemObject(formConfig);
     addToDatabase('item', newItem, setToast);
-  }
+  };
 
   return (
     <div className="container">
@@ -64,7 +63,9 @@ export const CreateItemForm: React.FC = () => {
         }}
       />
       <Divider y={5}>Submit</Divider>
-      <Button type="success-light" onClick={createItem}>CREATE</Button>
+      <Button type="success-light" onClick={createItem}>
+        CREATE
+      </Button>
     </div>
   );
 };

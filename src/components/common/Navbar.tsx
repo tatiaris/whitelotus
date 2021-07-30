@@ -14,9 +14,11 @@ export const Navbar: React.FC = (): React.ReactElement => {
     <>
       <Row className="navbar-row">
         <div className="left-nav-container">
-          <Link className="brand-name" href="/" block>Board Games</Link>
+          <Link className="brand-name" href="/" block>
+            Board Games
+          </Link>
           <div className="left-links-container">
-            <Link className={false ? "active" : ""} href="/about" block>
+            <Link className={'active'} href="/about" block>
               About
             </Link>
           </div>
@@ -39,8 +41,10 @@ export const Navbar: React.FC = (): React.ReactElement => {
           )}
           <div className="hamburger-nav">
             <ButtonDropdown auto size="small">
-              <ButtonDropdown.Item main><Menu /></ButtonDropdown.Item>
-              <ButtonDropdown.Item onClick={() => navigatePath("/about")}>About</ButtonDropdown.Item>
+              <ButtonDropdown.Item main>
+                <Menu />
+              </ButtonDropdown.Item>
+              <ButtonDropdown.Item onClick={() => navigatePath('/about')}>About</ButtonDropdown.Item>
             </ButtonDropdown>
           </div>
         </div>
