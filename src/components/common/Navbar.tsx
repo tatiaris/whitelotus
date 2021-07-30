@@ -2,42 +2,24 @@ import React from 'react';
 import { Button, Row, Link, ButtonDropdown } from '@geist-ui/react';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { Menu } from '@geist-ui/react-icons';
-import { metadata } from '../Metadata';
-import { getInitialPath, navigatePath } from '../Helper';
+import { navigatePath } from '../Helper';
 
 /**
  * Navbar component
  */
 export const Navbar: React.FC = (): React.ReactElement => {
   const [session, loading] = useSession();
-  const initialPath = getInitialPath();
-
-  const navbarLinks = [];
-  const navDropdownLinks = [];
-  Object.keys(metadata.structure).map((route, i) => {
-    const routeData = metadata.structure[route];
-    if (routeData.public) {
-      navbarLinks.push(
-        <Link key={`nav-${i}`} className={initialPath == route && 'active'} href={routeData.href} block>
-          {routeData.title}
-        </Link>
-      );
-      navDropdownLinks.push(
-        <ButtonDropdown.Item key={`dropdown-btn-${i}`} onClick={() => navigatePath(routeData.href)}>
-          {routeData.title}
-        </ButtonDropdown.Item>
-      );
-    }
-  });
 
   return (
     <>
       <Row className="navbar-row">
         <div className="left-nav-container">
-          <Link className="brand-name" href="/" block>
-            {metadata.name}
-          </Link>
-          <div className="left-links-container">{navbarLinks}</div>
+          <Link className="brand-name" href="/" block>Board Games</Link>
+          <div className="left-links-container">
+            <Link className={false ? "active" : ""} href="/about" block>
+              About
+            </Link>
+          </div>
         </div>
         <div className="right-nav-container">
           {!session && !loading && (
@@ -57,10 +39,8 @@ export const Navbar: React.FC = (): React.ReactElement => {
           )}
           <div className="hamburger-nav">
             <ButtonDropdown auto size="small">
-              <ButtonDropdown.Item main>
-                <Menu />
-              </ButtonDropdown.Item>
-              {navDropdownLinks}
+              <ButtonDropdown.Item main><Menu /></ButtonDropdown.Item>
+              <ButtonDropdown.Item onClick={() => navigatePath("/about")}>About</ButtonDropdown.Item>
             </ButtonDropdown>
           </div>
         </div>

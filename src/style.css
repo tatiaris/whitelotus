@@ -1,6 +1,6 @@
 /* GENERAL SETTINGS START */
 body {
-  background-color: white;
+  background-color: white !important;
 }
 h4, h5 {
   margin: 0 !important;
@@ -194,3 +194,21 @@ input[type=text]:focus {
   }
 }
 /* MOBILE SCREEN SIZE END */
+
+/* PLAYING CARD START */
+.playing-card {
+  width: 300px;
+  height: 500px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+.playing-card .card-value {
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  font-size: 250%;
+  font-weight: bold;
+}
+/* PLAYING CARD END */
