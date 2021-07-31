@@ -2,7 +2,6 @@ import { Provider } from 'next-auth/client';
 import { GeistProvider, CssBaseline } from '@geist-ui/react';
 import { Header } from '../components/common/Header';
 import { Navbar } from '../components/common/Navbar';
-import { Footer } from '../components/common/Footer';
 import '../style.css';
 
 export default function MyApp({ Component, pageProps }) {
@@ -11,9 +10,9 @@ export default function MyApp({ Component, pageProps }) {
       <CssBaseline />
       <Provider session={pageProps.session}>
         <Header />
-        <Navbar />
+        {/* <Navbar /> */}
         <Component {...pageProps} />
-        <Footer />
+        {/* <Footer /> */}
       </Provider>
     </GeistProvider>
   );

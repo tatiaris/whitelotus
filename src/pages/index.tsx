@@ -1,13 +1,17 @@
-import React from 'react';
-import { Page } from '@geist-ui/react';
-import PlayingCard from '../components/game/equipment/PlayingCard';
+import { useState } from 'react';
 
-const Home = (): React.ReactNode => {
+export default function Home() {
+  const [roomId, setRoomId] = useState('');
+  const goToRoom = () => {
+    location.href = `/room/${roomId}`;
+  };
+
   return (
-    <Page>
-      <PlayingCard data={{ value: '1', suit: 'hearts' }} />
-    </Page>
+    <div>
+      <div style={{ width: '250px' }}>
+        <input onChange={(e) => setRoomId(e.target.value)} type="text" placeholder="room id" />
+      </div>
+      <button onClick={goToRoom}>submit</button>
+    </div>
   );
-};
-
-export default Home;
+}

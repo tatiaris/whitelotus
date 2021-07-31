@@ -17,11 +17,11 @@ export const Navbar: React.FC = (): React.ReactElement => {
           <Link className="brand-name" href="/" block>
             Board Games
           </Link>
-          <div className="left-links-container">
+          {/* <div className="left-links-container">
             <Link className={'active'} href="/about" block>
               About
             </Link>
-          </div>
+          </div> */}
         </div>
         <div className="right-nav-container">
           {!session && !loading && (
@@ -44,7 +44,7 @@ export const Navbar: React.FC = (): React.ReactElement => {
               <ButtonDropdown.Item main>
                 <Menu />
               </ButtonDropdown.Item>
-              <ButtonDropdown.Item onClick={() => navigatePath('/about')}>About</ButtonDropdown.Item>
+              {/* <ButtonDropdown.Item onClick={() => navigatePath('/about')}>About</ButtonDropdown.Item> */}
             </ButtonDropdown>
           </div>
         </div>

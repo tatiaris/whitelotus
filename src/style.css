@@ -1,13 +1,15 @@
 /* GENERAL SETTINGS START */
 body {
-  background-color: white !important;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 h4, h5 {
   margin: 0 !important;
 }
 input[type=text] {
   width: 100%;
-  padding: 0 10px;
+  padding-left: 10px;
   line-height: 2.5;
   border: 0;
   border-radius: 5px;
@@ -27,6 +29,13 @@ input[type=text]:focus {
   color: #666666;
   font-size: small;
   font-style: italic;
+}
+button {
+  background-color: black;
+  color: white !important;
+  padding: 0px 10px;
+  border-radius: 5px;
+  border: none;
 }
 #__next {
   overflow-x: visible !important;
