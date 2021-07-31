@@ -7,18 +7,6 @@ body {
 h4, h5 {
   margin: 0 !important;
 }
-input[type=text] {
-  width: 100%;
-  padding-left: 10px;
-  line-height: 2.5;
-  border: 0;
-  border-radius: 5px;
-  box-shadow: inset 1px 1px 5px #bebebe, inset -1px -1px 5px #ffffff;
-  transition: 200ms;
-}
-input[type=text]:focus {
-  border: 0 !important;
-}
 .input-container {
   width: 250px;
 }
@@ -29,13 +17,6 @@ input[type=text]:focus {
   color: #666666;
   font-size: small;
   font-style: italic;
-}
-button {
-  background-color: black;
-  color: white !important;
-  padding: 0px 10px;
-  border-radius: 5px;
-  border: none;
 }
 #__next {
   overflow-x: visible !important;
