@@ -34,10 +34,10 @@ export const ChatContainer: React.FC<Props> = (props): React.ReactElement => {
   }, []);
 
   return (
-    <div style={{ width: "20%", height: "100%", padding: "1rem", minWidth: "200px" }}>
+    <div style={{ width: '20%', height: '100%', padding: '1rem', minWidth: '200px' }}>
       <div>
         <div>
-          <input onChange={(e) => setMessage(e.target.value)} type="text" name="message" id="message" placeholder="send a message..."/>
+          <input onChange={(e) => setMessage(e.target.value)} type="text" name="message" id="message" placeholder="send a message..." />
         </div>
         <button onClick={sendMessage}>send</button>
       </div>

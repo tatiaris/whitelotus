@@ -24,7 +24,7 @@ export const Room = () => {
   const updateRoom = (updatedRoomInfo: any) => {
     console.log(updatedRoomInfo);
     setRoomInfo(updatedRoomInfo);
-  }
+  };
 
   useEffect(() => {
     if (room_id) socket.emit('join_room', { room_id });
@@ -33,15 +33,15 @@ export const Room = () => {
   useEffect(() => {
     socket.on('joined_room', assignUsername);
     socket.on('username_updated', assignUsername);
-    socket.on('room_update', updateRoom)
+    socket.on('room_update', updateRoom);
   }, []);
 
   return room_id ? (
-    <div style={{ display: "flex", width: "100vw", height: "100vh" }}>
+    <div style={{ display: 'flex', width: '100vw', height: '100vh' }}>
       <GameContainer data={{ room_id: room_id.toString(), roomInfo: roomInfo, username: username }} />
       <ChatContainer data={{ room_id: room_id.toString(), username: username }} />
     </div>
-  ): (
+  ) : (
     <div>loading...</div>
   );
 };

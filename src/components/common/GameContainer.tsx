@@ -6,7 +6,7 @@ import { socket } from '../../../util/socket';
 /**
  * GameContainer component
  */
- interface PlayerObj {
+interface PlayerObj {
   username: string;
   admin: boolean;
 }
@@ -14,7 +14,7 @@ export interface roomJsonObj {
   totalPlayers: number;
   players: Array<PlayerObj>;
 }
- interface GameProps {
+interface GameProps {
   room_id: string;
   username: string;
   roomInfo: roomJsonObj;
@@ -28,26 +28,31 @@ export const GameContainer: React.FC<Props> = (props): React.ReactElement => {
   const [updatedUsername, setUpdatedUsername] = useState('');
 
   const updateUsername = () => {
-    socket.emit('update_username', { room_id, username, newUsername: updatedUsername })
+    socket.emit('update_username', { room_id, username, newUsername: updatedUsername });
     setUpdatingUsername(false);
-  }
+  };
 
   return (
-    <div style={{ width: "80%", height: "100%", padding: "1rem" }}>
+    <div style={{ width: '80%', height: '100%', padding: '1rem' }}>
       room: {room_id}
       <br />
       total players: {roomInfo.totalPlayers}
       <br />
-      players: {roomInfo.players.map((p, i) => <span>{`${i == 0 ? "" : `, `}${p.username}`}</span>)}
+      players:{' '}
+      {roomInfo.players.map((p, i) => (
+        <span key={`player-${i}`}>{`${i == 0 ? '' : `, `}${p.username}`}</span>
+      ))}
       <br />
       username: {username}
-      <button onClick={() => setUpdatingUsername(!updatingUsername)}>{updatingUsername ? "cancel" : "update"}</button>
-      {updatingUsername && <div>
+      <button onClick={() => setUpdatingUsername(!updatingUsername)}>{updatingUsername ? 'cancel' : 'update'}</button>
+      {updatingUsername && (
         <div>
-          <input onChange={(e) => setUpdatedUsername(e.target.value)} type="text" name="username" placeholder="readyPlayerOne" />
+          <div>
+            <input onChange={(e) => setUpdatedUsername(e.target.value)} type="text" name="username" placeholder="readyPlayerOne" />
+          </div>
+          <button onClick={updateUsername}>update</button>
         </div>
-        <button onClick={updateUsername}>update</button>
-      </div>}
+      )}
     </div>
   );
 };
