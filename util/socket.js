@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-const socketUrl = 'https://rtbgs.herokuapp.com/';
+const socketUrl = 'http://localhost:8888';
 
 export const socket = io(socketUrl, {
   withCredentials: true,

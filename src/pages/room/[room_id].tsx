@@ -12,17 +12,22 @@ export const Room = () => {
   const router = useRouter();
   const { room_id } = router.query;
 
+  const [roomFound, setRoomFound] = useState(false);
   const [username, setUsername] = useState('');
   const [roomInfo, setRoomInfo] = useState<roomJsonObj>({
     totalPlayers: 1,
     players: []
   });
 
+  const joinRoom = (assignedUsername: string) => {
+    setRoomFound(true);
+    assignUsername(assignedUsername);
+  };
+
   const assignUsername = (assignedUsername: string) => {
     setUsername(assignedUsername);
   };
   const updateRoom = (updatedRoomInfo: any) => {
-    console.log(updatedRoomInfo);
     setRoomInfo(updatedRoomInfo);
   };
 
@@ -31,19 +36,23 @@ export const Room = () => {
   }, [room_id]);
 
   useEffect(() => {
-    socket.on('joined_room', assignUsername);
+    socket.on('joined_room', joinRoom);
     socket.on('username_updated', assignUsername);
     socket.on('room_update', updateRoom);
   }, []);
 
-  return room_id ? (
-    <div style={{ display: 'flex', width: '100vw', height: '100vh' }}>
-      <GameContainer data={{ room_id: room_id.toString(), roomInfo: roomInfo, username: username }} />
-      <ChatContainer data={{ room_id: room_id.toString(), username: username }} />
-    </div>
-  ) : (
-    <div>loading...</div>
-  );
+  if (!room_id) {
+    return <div>loading...</div>;
+  } else if (room_id && !roomFound) {
+    return <div>room {room_id} not found :(</div>;
+  } else {
+    return (
+      <div style={{ display: 'flex', width: '100vw', height: '100vh' }}>
+        <GameContainer data={{ room_id: room_id.toString(), roomInfo: roomInfo, username: username }} />
+        <ChatContainer data={{ room_id: room_id.toString(), username: username }} />
+      </div>
+    );
+  }
 };
 
 export default Room;
