@@ -8,26 +8,33 @@ import ChatContainer from '../../components/common/ChatContainer';
 /**
  * Room Page
  */
+
+interface joiningData {
+  username: string;
+  gameType: string;
+}
+
 export const Room = () => {
   const router = useRouter();
   const { room_id } = router.query;
-
   const [roomFound, setRoomFound] = useState(false);
   const [username, setUsername] = useState('');
   const [roomInfo, setRoomInfo] = useState<roomJsonObj>({
+    gameType: 'none',
     totalPlayers: 1,
     players: []
   });
 
-  const joinRoom = (assignedUsername: string) => {
+  const joinRoom = (param: joiningData) => {
     setRoomFound(true);
-    assignUsername(assignedUsername);
+    assignUsername(param.username);
+    setRoomInfo((roomInfo) => ({ ...roomInfo, gameType: param.gameType }));
   };
 
   const assignUsername = (assignedUsername: string) => {
     setUsername(assignedUsername);
   };
-  const updateRoom = (updatedRoomInfo: any) => {
+  const updateRoom = (updatedRoomInfo: roomJsonObj) => {
     setRoomInfo(updatedRoomInfo);
   };
 

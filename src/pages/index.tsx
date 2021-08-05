@@ -34,7 +34,7 @@ export default function Home() {
           <div>
             <select onBlur={(e) => setGameId(e.currentTarget.value)} name="game" id="game">
               <option value="bomb-squad">Bomb Squad</option>
-              <option value="uno">Uno</option>
+              <option value="the-mind">The Mind</option>
             </select>
           </div>
           <div>
