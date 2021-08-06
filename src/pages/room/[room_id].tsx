@@ -16,8 +16,8 @@ export const Room = () => {
   const { room_id } = router.query;
   const [roomFound, setRoomFound] = useState(false);
   const [userInfo, setUserInfo] = useState<PlayerObj>({
-    username: "",
-    picString: "",
+    username: '',
+    picString: '',
     admin: false
   });
   const [roomInfo, setRoomInfo] = useState<roomJsonObj>({
@@ -34,7 +34,9 @@ export const Room = () => {
   };
 
   const assignUsername = (assignedUsername: string) => {
-    setUserInfo((userInfo) => { return { ...userInfo, username: assignedUsername }});
+    setUserInfo((userInfo) => {
+      return { ...userInfo, username: assignedUsername };
+    });
   };
   const updateRoom = (updatedRoomInfo: roomJsonObj) => {
     setRoomInfo(updatedRoomInfo);
@@ -54,7 +56,11 @@ export const Room = () => {
   if (!room_id) {
     return <div>loading...</div>;
   } else if (room_id && !roomFound) {
-    return <div>room {room_id} not found :( <button onClick={() => navigatePath('/')}>leave</button></div>;
+    return (
+      <div>
+        room {room_id} not found :( <button onClick={() => navigatePath('/')}>leave</button>
+      </div>
+    );
   } else {
     return (
       <div style={{ display: 'flex', width: '100vw', height: '100vh' }}>

@@ -37,7 +37,8 @@ export const ChatContainer: React.FC<Props> = (props): React.ReactElement => {
   return (
     <div style={{ width: '20%', height: '100%', padding: '1rem', minWidth: '200px' }}>
       room: {room_id} <button onClick={() => navigatePath('/')}>leave</button>
-      <br /><br />
+      <br />
+      <br />
       <PlayersList {...props} />
       <br />
       <div>

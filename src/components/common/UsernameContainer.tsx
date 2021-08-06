@@ -12,7 +12,7 @@ interface UsernameContainerProps {
   room_id: string;
 }
 interface Props {
-  data: UsernameContainerProps
+  data: UsernameContainerProps;
 }
 export const UsernameContainer: React.FC<Props> = (props): React.ReactElement => {
   const { userInfo, room_id } = props.data;

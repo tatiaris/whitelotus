@@ -22,11 +22,7 @@ export const GameContainer: React.FC<GameContainerProps> = (props): React.ReactE
   if (roomInfo.gameType === 'bomb-squad') gameComponent = <BombSquad {...props} />;
   else if (roomInfo.gameType === 'the-mind') gameComponent = <TheMind {...props} />;
 
-  return (
-    <div style={{ width: '80%', height: '100%', padding: '1rem' }}>
-      {gameComponent}
-    </div>
-  );
+  return <div style={{ width: '80%', height: '100%', padding: '1rem' }}>{gameComponent}</div>;
 };
 
 export default GameContainer;
