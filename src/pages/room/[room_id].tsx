@@ -2,37 +2,39 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { socket } from '../../../util/socket';
-import GameContainer, { roomJsonObj } from '../../components/common/GameContainer';
+import GameContainer from '../../components/common/GameContainer';
 import ChatContainer from '../../components/common/ChatContainer';
+import { navigatePath } from '../../components/Helper';
+import { joiningData, PlayerObj, roomJsonObj } from '../../components/interfaces';
 
 /**
  * Room Page
  */
 
-interface joiningData {
-  username: string;
-  gameType: string;
-}
-
 export const Room = () => {
   const router = useRouter();
   const { room_id } = router.query;
   const [roomFound, setRoomFound] = useState(false);
-  const [username, setUsername] = useState('');
+  const [userInfo, setUserInfo] = useState<PlayerObj>({
+    username: "",
+    picString: "",
+    admin: false
+  });
   const [roomInfo, setRoomInfo] = useState<roomJsonObj>({
     gameType: 'none',
     totalPlayers: 1,
-    players: []
+    players: {},
+    spectators: {}
   });
 
   const joinRoom = (param: joiningData) => {
     setRoomFound(true);
-    assignUsername(param.username);
+    setUserInfo(param.userInfo);
     setRoomInfo((roomInfo) => ({ ...roomInfo, gameType: param.gameType }));
   };
 
   const assignUsername = (assignedUsername: string) => {
-    setUsername(assignedUsername);
+    setUserInfo((userInfo) => { return { ...userInfo, username: assignedUsername }});
   };
   const updateRoom = (updatedRoomInfo: roomJsonObj) => {
     setRoomInfo(updatedRoomInfo);
@@ -46,17 +48,18 @@ export const Room = () => {
     socket.on('joined_room', joinRoom);
     socket.on('username_updated', assignUsername);
     socket.on('room_update', updateRoom);
+    socket.on('you_are_kicked', () => navigatePath('/'));
   }, []);
 
   if (!room_id) {
     return <div>loading...</div>;
   } else if (room_id && !roomFound) {
-    return <div>room {room_id} not found :(</div>;
+    return <div>room {room_id} not found :( <button onClick={() => navigatePath('/')}>leave</button></div>;
   } else {
     return (
       <div style={{ display: 'flex', width: '100vw', height: '100vh' }}>
-        <GameContainer data={{ room_id: room_id.toString(), roomInfo: roomInfo, username: username }} />
-        <ChatContainer data={{ room_id: room_id.toString(), username: username }} />
+        <GameContainer data={{ room_id: room_id.toString(), roomInfo, userInfo: userInfo }} />
+        <ChatContainer data={{ room_id: room_id.toString(), roomInfo, userInfo: userInfo }} />
       </div>
     );
   }
