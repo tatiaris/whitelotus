@@ -6,7 +6,9 @@ import { GameContainerProps } from '../../common/GameContainer';
  */
 export const TheMind: React.FC<GameContainerProps> = (props) => {
   const { room_id, userInfo, roomInfo } = props.data;
-  return <div>game: the mind</div>;
+  return (
+    <div>The Mind game content</div>
+  );
 };
 
 export default TheMind;
