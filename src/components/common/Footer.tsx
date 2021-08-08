@@ -4,10 +4,7 @@ import React from 'react';
  * Footer component
  */
 export const Footer: React.FC = () => {
-  return (
-    <>
-    </>
-  );
+  return <></>;
 };
 
 export default Footer;
