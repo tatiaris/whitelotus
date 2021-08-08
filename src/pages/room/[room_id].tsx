@@ -24,7 +24,8 @@ export const Room = () => {
     gameType: 'none',
     totalPlayers: 1,
     players: {},
-    spectators: {}
+    spectators: {},
+    inProgress: false
   });
 
   const joinRoom = (param: joiningData) => {

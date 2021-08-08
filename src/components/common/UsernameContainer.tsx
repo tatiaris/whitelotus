@@ -19,10 +19,13 @@ export const UsernameContainer: React.FC<Props> = (props): React.ReactElement =>
   const [updatingUsername, setUpdatingUsername] = useState(false);
   const [updatedUsername, setUpdatedUsername] = useState('');
 
-  const updateUsername = () => {
+  const updateUsername = (e) => {
+    e.preventDefault();
     if (updatedUsername.length > 0) {
       socket.emit('update_username', { room_id, username: userInfo.username, newUsername: updatedUsername });
       setUpdatingUsername(false);
+      setUpdatedUsername('');
+      (document.getElementById('username-input') as HTMLInputElement).value = '';
     }
   };
 
@@ -31,10 +34,12 @@ export const UsernameContainer: React.FC<Props> = (props): React.ReactElement =>
       (you) {userInfo.username} <button onClick={() => setUpdatingUsername(!updatingUsername)}>{updatingUsername ? 'cancel' : 'update'}</button>
       {updatingUsername && (
         <div>
-          <div>
-            <input onChange={(e) => setUpdatedUsername(e.target.value.trim())} type="text" name="username" placeholder="readyPlayerOne" />
-          </div>
-          <button onClick={updateUsername}>update</button>
+          <form onSubmit={updateUsername}>
+            <div>
+              <input onChange={(e) => setUpdatedUsername(e.target.value.trim())} type="text" name="username" id="username-input" placeholder="readyPlayerOne" />
+            </div>
+            <button type="submit">update</button>
+          </form>
         </div>
       )}
     </div>

@@ -20,9 +20,12 @@ export const ChatContainer: React.FC<Props> = (props): React.ReactElement => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
 
-  const sendMessage = () => {
+  const sendMessage = (e) => {
+    e.preventDefault();
     if (message.length > 0) {
       socket.emit('message', { room_id: room_id, username: userInfo.username, content: message });
+      (document.getElementById('message-input') as HTMLInputElement).value = '';
+      setMessage('');
     }
   };
 
@@ -36,16 +39,19 @@ export const ChatContainer: React.FC<Props> = (props): React.ReactElement => {
 
   return (
     <div style={{ width: '20%', height: '100%', padding: '1rem', minWidth: '200px' }}>
-      room: {room_id} <button onClick={() => navigatePath('/')}>leave</button>
-      <br />
+      <div>
+        room: {room_id} <button onClick={() => navigatePath('/')}>leave</button>
+      </div>
       <br />
       <PlayersList {...props} />
       <br />
       <div>
-        <div>
-          <input onChange={(e) => setMessage(e.target.value.trim())} type="text" name="message" id="message" placeholder="send a message..." />
-        </div>
-        <button onClick={sendMessage}>send</button>
+        <form id="message-form" onSubmit={sendMessage}>
+          <div>
+            <input onChange={(e) => setMessage(e.target.value.trim())} type="text" name="message" id="message-input" placeholder="send a message..." />
+          </div>
+          <button type="submit">send</button>
+        </form>
       </div>
       <div>Chat:</div>
       <div>

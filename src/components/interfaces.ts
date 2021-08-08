@@ -18,4 +18,5 @@ export interface roomJsonObj {
   players: Record<string, PlayerObj>;
   spectators: Record<string, PlayerObj>;
   gameType: string;
+  inProgress: boolean;
 }

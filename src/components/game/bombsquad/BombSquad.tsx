@@ -6,11 +6,7 @@ import { GameContainerProps } from '../../common/GameContainer';
  */
 export const BombSquad: React.FC<GameContainerProps> = (props) => {
   const { room_id, userInfo, roomInfo } = props.data;
-  return (
-    <div>
-      bomb squad game content
-    </div>
-  );
+  return <div>bomb squad game content</div>;
 };
 
 export default BombSquad;
