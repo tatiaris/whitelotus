@@ -38,7 +38,7 @@ export default function Home() {
             </select>
           </div>
           <div>
-            <input type="submit" value="create"></input>
+            <button type="submit">create</button>
           </div>
         </form>
       </div>

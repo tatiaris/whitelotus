@@ -18,7 +18,7 @@ export interface GameContainerProps {
   data: GameProps;
 }
 export const GameContainer: React.FC<GameContainerProps> = (props): React.ReactElement => {
-  const { room_id, roomInfo } = props.data;
+  const { room_id, userInfo, roomInfo } = props.data;
   const [gameInProgress, setGameInProgress] = useState(false);
 
   const openGameInfoModal = () => {
@@ -44,7 +44,9 @@ export const GameContainer: React.FC<GameContainerProps> = (props): React.ReactE
       <div>
         game: {roomInfo.gameType} <button onClick={openGameInfoModal}>info</button>
       </div>
-      <div>{gameInProgress ? <button onClick={endGame}>end game</button> : <button onClick={startGame}>start game</button>}</div>
+      {userInfo.admin 
+        ? <div>{gameInProgress ? <button onClick={endGame}>end game</button>
+        : <button onClick={startGame}>start game</button>}</div> : <></>}
       {gameComponent}
     </div>
   );

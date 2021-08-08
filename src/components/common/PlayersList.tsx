@@ -25,7 +25,7 @@ export const PlayersList: React.FC<PlayersListProps> = (props): React.ReactEleme
         if (userInfo.admin)
           return (
             <div key={`player-in-room-${i}`}>
-              {username} <button onClick={() => kickPlayer(username)}>kick</button>
+              {username} {!roomInfo.inProgress ? <button onClick={() => kickPlayer(username)}>kick</button> : <></>}
             </div>
           );
         return <div key={`player-in-room-${i}`}>{username}</div>;

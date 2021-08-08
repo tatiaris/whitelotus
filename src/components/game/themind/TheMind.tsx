@@ -7,6 +7,7 @@ import { GameContainerProps } from '../../common/GameContainer';
  */
 interface theMindPublicData {
   level: number;
+  totalLevels: number;
   totalCards: number;
   cardsRemaining: number;
   livesRemaining: number;
@@ -15,35 +16,42 @@ interface theMindPublicData {
 interface theMindPrivateData {
   cards: Array<number>;
 }
+const defaultTheMindPublicData = {
+  level: 0,
+  totalLevels: 0,
+  totalCards: 0,
+  cardsRemaining: 0,
+  livesRemaining: 0,
+  cardsPlayedList: []
+}
 export const TheMind: React.FC<GameContainerProps> = (props) => {
   const { room_id, userInfo, roomInfo } = props.data;
   const [privateGameData, setPrivateGameData] = useState<theMindPrivateData>({
     cards: []
   });
-  const [publicGameData, setPublicGameData] = useState<theMindPublicData>({
-    level: 0,
-    totalCards: 0,
-    cardsRemaining: 0,
-    livesRemaining: 0,
-    cardsPlayedList: []
-  });
+  const [publicGameData, setPublicGameData] = useState<theMindPublicData>(defaultTheMindPublicData);
 
-  const gameHasStarted = () => {
-    socket.emit('private_data_request');
+  const gameHasStarted = (publicData: theMindPublicData) => {
+    setPublicGameData(publicData);
+    socket.emit('private_data_request', { username: userInfo.username, room_id });
   };
+  
+  const gameHasEnded = () => {
+    setPublicGameData(defaultTheMindPublicData);
+  }
 
   useEffect(() => {
-    socket.on('public_data_update', (d) => setPublicGameData(d));
-    socket.on('private_data_update', (d) => setPrivateGameData(d));
+    socket.on('public_data_update', setPublicGameData);
+    socket.on('private_data_update', setPrivateGameData);
     socket.on('game_has_started', gameHasStarted);
+    socket.on('game_has_ended', gameHasEnded);
   }, []);
 
-  if (!roomInfo.inProgress)
-    return (
-      <div>
-        Please press the <b>start game</b> button to start the game
-      </div>
-    );
+  if (!roomInfo.inProgress) {
+    return userInfo.admin
+      ? <div>Please press the <b>start game</b> button to start the game</div>
+      : <div>Please wait for the admin to start the game</div>
+  }
   return (
     <div>
       <div>Current Level: {publicGameData.level}</div>
@@ -51,7 +59,7 @@ export const TheMind: React.FC<GameContainerProps> = (props) => {
       <div>Cards Remaining: {publicGameData.cardsRemaining}</div>
       <div>Lives Remaining: {publicGameData.livesRemaining}</div>
       <div>Cards Played: {publicGameData.cardsPlayedList.join(', ')}</div>
-      <div>Your Cards: {privateGameData.cards.join(', ')}</div>
+      <div>Your Remaining Card(s): {privateGameData.cards?.join(', ')}</div>
       <div>
         <button>play lowest card</button>
       </div>
