@@ -15,7 +15,7 @@
     "mongodb": "3.6.9",
     "next": "11.0.1",
     "next-auth": "3.27.0",
-    "next-connect": "0.10.1",
+    "next-connect": "0.10.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "socket.io-client": "^4.1.3",
