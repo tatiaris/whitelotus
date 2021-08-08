@@ -44,9 +44,7 @@ export const GameContainer: React.FC<GameContainerProps> = (props): React.ReactE
       <div>
         game: {roomInfo.gameType} <button onClick={openGameInfoModal}>info</button>
       </div>
-      {userInfo.admin 
-        ? <div>{gameInProgress ? <button onClick={endGame}>end game</button>
-        : <button onClick={startGame}>start game</button>}</div> : <></>}
+      {userInfo.admin ? <div>{gameInProgress ? <button onClick={endGame}>end game</button> : <button onClick={startGame}>start game</button>}</div> : <></>}
       {gameComponent}
     </div>
   );

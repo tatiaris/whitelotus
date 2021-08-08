@@ -23,7 +23,7 @@ const defaultTheMindPublicData = {
   cardsRemaining: 0,
   livesRemaining: 0,
   cardsPlayedList: []
-}
+};
 export const TheMind: React.FC<GameContainerProps> = (props) => {
   const { room_id, userInfo, roomInfo } = props.data;
   const [privateGameData, setPrivateGameData] = useState<theMindPrivateData>({
@@ -35,10 +35,10 @@ export const TheMind: React.FC<GameContainerProps> = (props) => {
     setPublicGameData(publicData);
     socket.emit('private_data_request', { username: userInfo.username, room_id });
   };
-  
+
   const gameHasEnded = () => {
     setPublicGameData(defaultTheMindPublicData);
-  }
+  };
 
   useEffect(() => {
     socket.on('public_data_update', setPublicGameData);
@@ -48,9 +48,13 @@ export const TheMind: React.FC<GameContainerProps> = (props) => {
   }, []);
 
   if (!roomInfo.inProgress) {
-    return userInfo.admin
-      ? <div>Please press the <b>start game</b> button to start the game</div>
-      : <div>Please wait for the admin to start the game</div>
+    return userInfo.admin ? (
+      <div>
+        Please press the <b>start game</b> button to start the game
+      </div>
+    ) : (
+      <div>Please wait for the admin to start the game</div>
+    );
   }
   return (
     <div>
