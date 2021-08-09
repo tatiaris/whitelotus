@@ -26,24 +26,25 @@ const defaultTheMindPublicData = {
 };
 export const TheMind: React.FC<GameContainerProps> = (props) => {
   const { room_id, userInfo, roomInfo } = props.data;
-  const [privateGameData, setPrivateGameData] = useState<theMindPrivateData>({
-    cards: []
-  });
+  const [privateGameData, setPrivateGameData] = useState<theMindPrivateData>({ cards: [] });
   const [publicGameData, setPublicGameData] = useState<theMindPublicData>(defaultTheMindPublicData);
-
-  const gameHasStarted = (publicData: theMindPublicData) => {
-    setPublicGameData(publicData);
-    socket.emit('private_data_request', { username: userInfo.username, room_id });
-  };
 
   const gameHasEnded = () => {
     setPublicGameData(defaultTheMindPublicData);
   };
 
+  const publicDataUpdate = (publicData: theMindPublicData) => {
+    setPublicGameData(publicData);
+    socket.emit('private_data_request', { username: userInfo.username, room_id });
+  };
+
+  const playLowestCard = () => {
+    socket.emit('player_action', { room_id, username: userInfo.username, actionType: 'play_lowest_card', actionData: {} });
+  };
+
   useEffect(() => {
-    socket.on('public_data_update', setPublicGameData);
+    socket.on('public_data_update', publicDataUpdate);
     socket.on('private_data_update', setPrivateGameData);
-    socket.on('game_has_started', gameHasStarted);
     socket.on('game_has_ended', gameHasEnded);
   }, []);
 
@@ -65,7 +66,9 @@ export const TheMind: React.FC<GameContainerProps> = (props) => {
       <div>Cards Played: {publicGameData.cardsPlayedList.join(', ')}</div>
       <div>Your Remaining Card(s): {privateGameData.cards?.join(', ')}</div>
       <div>
-        <button>play lowest card</button>
+        <button disabled={privateGameData.cards.length <= 0} onClick={playLowestCard}>
+          play lowest card
+        </button>
       </div>
     </div>
   );

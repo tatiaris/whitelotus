@@ -38,7 +38,7 @@ export const ChatContainer: React.FC<Props> = (props): React.ReactElement => {
   }, []);
 
   return (
-    <div style={{ width: '20%', height: '100%', padding: '1rem', minWidth: '200px' }}>
+    <div style={{ width: '20%', height: '100%', padding: '1rem', minWidth: '251px' }}>
       <div>
         room: {room_id} <button onClick={() => navigatePath('/')}>leave</button>
       </div>
@@ -46,10 +46,8 @@ export const ChatContainer: React.FC<Props> = (props): React.ReactElement => {
       <PlayersList {...props} />
       <br />
       <div>
-        <form id="message-form" onSubmit={sendMessage}>
-          <div>
-            <input onChange={(e) => setMessage(e.target.value.trim())} type="text" name="message" id="message-input" placeholder="send a message..." />
-          </div>
+        <form id="message-form" onSubmit={sendMessage} style={{ overflow: 'hidden' }}>
+          <input onChange={(e) => setMessage(e.target.value.trim())} type="text" name="message" id="message-input" placeholder="send a message..." />
           <button type="submit">send</button>
         </form>
       </div>

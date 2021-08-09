@@ -4,7 +4,7 @@ import { socket } from '../../util/socket';
 
 export default function Home() {
   const [roomId, setRoomId] = useState('');
-  const [gameId, setGameId] = useState('bomb-squad');
+  const [gameId, setGameId] = useState('the-mind');
   const [creatingRoom, setCreatingRoom] = useState(false);
 
   const createRoom = (e: FormEvent<HTMLFormElement>) => {
@@ -33,8 +33,8 @@ export default function Home() {
         <form onSubmit={createRoom}>
           <div>
             <select onBlur={(e) => setGameId(e.currentTarget.value)} name="game" id="game">
-              <option value="bomb-squad">Bomb Squad</option>
               <option value="the-mind">The Mind</option>
+              <option value="bomb-squad">Bomb Squad</option>
             </select>
           </div>
           <div>

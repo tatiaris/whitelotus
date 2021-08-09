@@ -13,10 +13,6 @@
   color: white !important;
   border: 1px solid #333;
 }
-
-html {
-  background-color: black;
-}
 body {
   width: 100vw;
   height: 100vh;
@@ -27,6 +23,13 @@ h4, h5 {
 }
 button {
   background-color: darkmagenta;
+}
+button:disabled {
+  background-color: #333;
+}
+input {
+  background-color: white;
+  color: black !important;
 }
 .input-container {
   width: 250px;
@@ -59,150 +62,16 @@ button {
   justify-content: center;
   align-items: center;
 }
-.gpay-card-info-container {
-  min-width: 100% !important;
-}
 /* GENERAL SETTINGS END */
 
 /* Navbar css BEGIN */
-.navbar-row {
-  padding: 10px 20px;
-  -webkit-justify-content: space-between !important;
-  -moz-box-pack: justify !important;
-  justify-content: space-between !important;
-  width: 100%;
-  background: white;
-  box-shadow: 0 0 15px 0 rgba(0,0,0,.1);
-}
-.left-nav-container {
-  display: flex;
-}
-.right-nav-container {
-  display: flex;
-}
-.hamburger-nav {
-  display: none;
-}
-@media (max-width: 550px) {
-  .left-links-container {
-    display: none;
-  }
-  .hamburger-nav {
-    display: block;
-    margin-left: 10px;
-  }
-}
-.left-nav-container > .brand-name {
-  font-weight: 500;
-}
-.left-nav-container > .brand-name:hover {
-  background-color: transparent !important;
-}
-.left-nav-container  a {
-  color: black !important;
-  margin-right: 10px;
-}
-.left-nav-container a.active {
-  background-color: rgba(50, 50, 50, 0.1);
-}
-.left-nav-container a:hover {
-  background-color: rgba(50, 50, 50, 0.1) !important;
-}
 /* Navbar css END */
 
 /* Footer css BEGIN */
-.copyright-statement > a {
-  color: #666666;
-}
-.copyright-statement > a:hover {
-  text-decoration: underline;
-}
 /* Footer css END */
-
-/* Shop css START */
-.item-card {
-  display: flex;
-  width: 450px;
-  height: 200px;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-  transition: 200ms;
-  position: relative;
-}
-.item-card:hover {
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
-}
-.item-card:hover .item-card-img {
-  transform: scale(1.1);
-}
-.item-card-img-container {
-  width: 45%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-}
-.item-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: 700ms;
-}
-.item-card-details-container {
-  width: 55%;
-  border-radius: 0px 5px 5px 0px;
-  padding: 10px;
-}
-.item-card-title {
-  color: black;
-}
-.item-card-title:hover {
-  text-decoration: underline;
-}
-.add-to-cart-btn {
-  width: 100%;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-.item-card-discount-tag {
-  position: absolute;
-  top: 5%;
-  padding: 0 10px;
-  background-color: #8aff79;
-  clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
-  z-index: 1;
-}
-.cart-pay-btn-container {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 10px;
-}
-/* Shop css END */
 
 /* MOBILE SCREEN SIZE START */
 @media (max-width: 550px) {
-  .left-links-container {
-    display: none;
-  }
-  .hamburger-nav {
-    display: block;
-    margin-left: 10px;
-  }
-  .item-card {
-    display: block;
-    width: max-content;
-    height: max-content;
-  }
-  .item-card-img-container {
-    width: 100%;
-    height: 200px;
-    position: relative;
-  }
-  .item-card-details-container {
-    width: 100%;
-  }
 }
 /* MOBILE SCREEN SIZE END */
 
