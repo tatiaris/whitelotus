@@ -9,53 +9,51 @@
   box-sizing: border-box;
   overflow-wrap: break-word;
   margin: 0px;
-  background-color: black;
-  color: white !important;
-  border: 1px solid #333;
+  border: none;
+  transition: 200ms;
 }
 body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
 }
+
 h4, h5 {
   margin: 0 !important;
 }
-button {
-  background-color: darkmagenta;
-}
-button:disabled {
-  background-color: #333;
+
+button:hover {
+  cursor: pointer;
 }
 input {
-  background-color: white;
-  color: black !important;
+  border: 1px solid #333;
 }
-.input-container {
-  width: 250px;
+input:focus-visible {
+  outline: none;
 }
-.input-container.fill {
-  width: 100%;
-}
-.input-helper-text {
-  color: #666666;
-  font-size: small;
-  font-style: italic;
+.text-center {
+  text-align: center;
 }
 #__next {
   overflow-x: visible !important;
 }
-.container {
-  padding: 20px;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 0 15px 0 rgba(0,0,0,.1);
+.full-screen {
+  width: 100vw;
+  height: 100vh;
 }
-.flex-wrap-container {
+.opacity-75 {
+  opacity: 0.75;
+}
+.shadow-50 {
+  box-shadow: 0 0px 10px rgb(0, 0, 0, 0.50);
+}
+.shadow-25 {
+  box-shadow: 0 0px 10px rgb(0, 0, 0, 0.25);
+}
+.flex-col-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
+  gap: 10px;
+  flex-direction: column;
 }
 .flex-center {
   display: flex;
