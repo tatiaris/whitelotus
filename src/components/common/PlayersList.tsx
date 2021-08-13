@@ -1,7 +1,7 @@
 import React from 'react';
 import { socket } from '../../../util/socket';
-import { GameProps } from './GameContainer';
-import UsernameContainer from './UsernameContainer';
+import { GameProps } from './Table';
+// import UsernameContainer from './ProfileEditForm';
 
 /**
  * PlayersList component
@@ -21,7 +21,7 @@ export const PlayersList: React.FC<PlayersListProps> = (props): React.ReactEleme
     <div style={{ width: '100%' }}>
       players list:
       {Object.keys(roomInfo.players).map((username, i) => {
-        if (username == userInfo.username) return <UsernameContainer key={`player-in-room-${i}`} data={{ room_id, userInfo }} />;
+        // if (username == userInfo.username) return <UsernameContainer key={`player-in-room-${i}`} data={{ room_id, userInfo }} />;
         if (userInfo.admin)
           return (
             <div key={`player-in-room-${i}`}>

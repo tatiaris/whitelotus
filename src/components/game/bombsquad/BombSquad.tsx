@@ -1,10 +1,10 @@
 import React from 'react';
-import { GameContainerProps } from '../../common/GameContainer';
+import { TableProps } from '../../common/Table';
 
 /**
  * BombSquad component
  */
-export const BombSquad: React.FC<GameContainerProps> = (props) => {
+export const BombSquad: React.FC<TableProps> = (props) => {
   const { room_id, userInfo, roomInfo } = props.data;
   return <div>bomb squad game content</div>;
 };

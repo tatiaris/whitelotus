@@ -1,0 +1,74 @@
+.chat-container, .chat-container-visible {
+  background: linear-gradient(45deg, rgba(213,35,103,1) 0%, rgba(255,160,122,1) 100%);
+  position: absolute;
+  height: calc(100vh - 5% - 20px);
+  padding: 10px;
+  width: 300px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.chat-container {
+  top: 100%;
+  right: 0;
+}
+.chat-container-visible {
+  top: calc(5% + 20px);
+  right: 10px;
+}
+.chat-wrapper {
+  width: 100%;
+  height: 93%;
+  padding: 10px 0;
+}
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+.msg-inp-container {
+  width: 100%;
+  height: 7%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.inp {
+  width: 75%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  padding-left: 15px;
+  font-size: 1rem;
+}
+.send-btn {
+  width: 25%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(35,166,213,1) 0%, rgba(35,213,171,1) 78%);
+  border-radius: 0px !important;
+  font-weight: bold;
+}
+.content {
+  width: max-content;
+  background-color: white;
+  padding: 2px 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  max-width: 100%;
+}
+
+@media (max-width: 550px) {
+  .chat-container, .chat-container-visible {
+    width: 100vw;
+    min-width: none;
+    right: 0px;
+  }
+}

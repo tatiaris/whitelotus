@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { socket } from '../../../util/socket';
-import GameContainer from '../../components/common/GameContainer';
+import Table from '../../components/common/Table';
 import ChatContainer from '../../components/common/ChatContainer';
 import { navigatePath } from '../../components/Helper';
 import { joiningData, PlayerObj, roomJsonObj } from '../../components/interfaces';
+import RoomNotFound from '../../components/common/RoomNotFound';
+import Loading from '../../components/common/Loading';
 
 /**
  * Room Page
@@ -14,7 +16,7 @@ import { joiningData, PlayerObj, roomJsonObj } from '../../components/interfaces
 export const Room = () => {
   const router = useRouter();
   const { room_id } = router.query;
-  const [roomFound, setRoomFound] = useState(false);
+  const [roomFound, setRoomFound] = useState(-1);
   const [userInfo, setUserInfo] = useState<PlayerObj>({
     username: '',
     picString: '',
@@ -29,7 +31,7 @@ export const Room = () => {
   });
 
   const joinRoom = (param: joiningData) => {
-    setRoomFound(true);
+    setRoomFound(1);
     setUserInfo(param.userInfo);
     setRoomInfo((roomInfo) => ({ ...roomInfo, gameType: param.gameType }));
   };
@@ -52,21 +54,18 @@ export const Room = () => {
     socket.on('username_updated', assignUsername);
     socket.on('room_update', updateRoom);
     socket.on('you_are_kicked', () => navigatePath('/'));
+    socket.on('room_not_found', () => setRoomFound(0));
   }, []);
 
-  if (!room_id) {
-    return <div>loading...</div>;
-  } else if (room_id && !roomFound) {
-    return (
-      <div>
-        room {room_id} not found :( <button onClick={() => navigatePath('/')}>leave</button>
-      </div>
-    );
+  if (roomFound == -1) {
+    return <Loading />;
+  } else if (roomFound == 0) {
+    return <RoomNotFound room_id={room_id.toString()} />;
   } else {
     return (
       <div style={{ display: 'flex', width: '100vw', height: '100vh' }}>
-        <GameContainer data={{ room_id: room_id.toString(), roomInfo, userInfo: userInfo }} />
-        <ChatContainer data={{ room_id: room_id.toString(), roomInfo, userInfo: userInfo }} />
+        <Table data={{ room_id: room_id.toString(), roomInfo, userInfo: userInfo }} />
+        {/* <ChatContainer data={{ room_id: room_id.toString(), roomInfo, userInfo: userInfo }} /> */}
       </div>
     );
   }

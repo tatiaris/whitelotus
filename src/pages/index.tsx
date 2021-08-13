@@ -20,7 +20,7 @@ export default function Home() {
   };
   const goToRoom = (e) => {
     e.preventDefault();
-    joinCreatedRoom(roomId);
+    if (roomId.length > 0) joinCreatedRoom(roomId);
   };
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function Home() {
           </div>
           <div className="flex-center">
             <form onSubmit={goToRoom}>
-              <input onChange={(e) => setRoomId(e.target.value)} className={`${styles.inp} text-center`} type="text" placeholder="room code" />
+              <input onChange={(e) => setRoomId(e.target.value.trim())} className={`${styles.inp} text-center`} type="text" placeholder="room code" />
               <button type="submit" className={`${styles.btn} shadow-25`}>
                 join
               </button>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { socket } from '../../../../util/socket';
-import { GameContainerProps } from '../../common/GameContainer';
+import { TableProps } from '../../common/Table';
+import * as style from '../../ui/css/TheMind.module.css';
 
 /**
  * TheMind component
@@ -24,7 +25,7 @@ const defaultTheMindPublicData = {
   livesRemaining: 0,
   cardsPlayedList: []
 };
-export const TheMind: React.FC<GameContainerProps> = (props) => {
+export const TheMind: React.FC<TableProps> = (props) => {
   const { room_id, userInfo, roomInfo } = props.data;
   const [privateGameData, setPrivateGameData] = useState<theMindPrivateData>({ cards: [] });
   const [publicGameData, setPublicGameData] = useState<theMindPublicData>(defaultTheMindPublicData);
