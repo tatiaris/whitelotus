@@ -6,6 +6,7 @@
 }
 .nav {
   height: 5%;
+  min-height: 40px;
   display: flex;
   justify-content: space-between;
 }

@@ -17,7 +17,7 @@
 }
 .chat-wrapper {
   width: 100%;
-  height: 93%;
+  height: calc(100% - 5% - 20px);
   padding: 10px 0;
 }
 .chat {
@@ -32,6 +32,7 @@
 .msg-inp-container {
   width: 100%;
   height: 7%;
+  min-height: 50px;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -66,9 +67,16 @@
 }
 
 @media (max-width: 550px) {
+  .chat-wrapper {
+    height: calc(100% - 5% - 40px);
+  }
   .chat-container, .chat-container-visible {
     width: 100vw;
     min-width: none;
+    height: calc(100vh - 5% - 40px);
     right: 0px;
+  }
+  .chat-container-visible {
+    top: calc(5% + 40px);
   }
 }
