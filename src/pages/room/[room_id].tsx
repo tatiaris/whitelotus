@@ -65,7 +65,6 @@ export const Room = () => {
     return (
       <div style={{ display: 'flex', width: '100vw', height: '100vh' }}>
         <Table data={{ room_id: room_id.toString(), roomInfo, userInfo: userInfo }} />
-        {/* <ChatContainer data={{ room_id: room_id.toString(), roomInfo, userInfo: userInfo }} /> */}
       </div>
     );
   }

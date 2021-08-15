@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { socket } from '../../util/socket';
+import Loading from '../components/common/Loading';
 import styles from '../components/ui/css/Home.module.css';
 
 export default function Home() {
@@ -27,7 +28,7 @@ export default function Home() {
     socket.on('room_created', joinCreatedRoom);
   }, []);
 
-  if (creatingRoom) return <div>creating room...</div>;
+  if (creatingRoom) return <Loading />;
 
   return (
     <div className={`${styles['main-body']} full-screen flex-center`}>

@@ -17,6 +17,9 @@
 	border-radius: 5px;
   font-weight: bold;
 }
+.nav button:hover {
+  letter-spacing: 2px;
+}
 .game-nav {
   display: flex;
   gap: 10px;

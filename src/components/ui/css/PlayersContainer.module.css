@@ -1,4 +1,4 @@
-.chat-container, .chat-container-visible {
+.players-container, .players-container-visible {
   background: linear-gradient(45deg, rgba(213,35,103,1) 0%, rgba(255,160,122,1) 100%);
   position: absolute;
   height: calc(100vh - 5% - 20px);
@@ -7,20 +7,20 @@
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
-.chat-container {
+.players-container {
   top: calc(100% + 40px);
-  right: 0;
+  left: 0;
 }
-.chat-container-visible {
+.players-container-visible {
   top: calc(5% + 20px);
-  right: 10px;
+  left: 10px;
 }
-.chat-wrapper {
+.players-wrapper {
   width: 100%;
   height: calc(100% - 5% - 20px);
   padding: 10px 0;
 }
-.chat {
+.players {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -67,16 +67,16 @@
 }
 
 @media (max-width: 550px) {
-  .chat-wrapper {
+  .players-wrapper {
     height: calc(100% - 5% - 40px);
   }
-  .chat-container, .chat-container-visible {
+  .players-container, .players-container-visible {
     width: 100vw;
     min-width: none;
     height: calc(100vh - 5% - 40px);
-    right: 0px;
+    left: 0px;
   }
-  .chat-container-visible {
+  .players-container-visible {
     top: calc(5% + 40px);
   }
 }

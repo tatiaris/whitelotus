@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { socket } from '../../../util/socket';
-import { navigatePath } from '../Helper';
 import { GameProps } from './Table';
-import PlayersList from './PlayersList';
 import * as style from '../ui/css/ChatContainer.module.css';
 
 /**
@@ -42,7 +40,7 @@ export const ChatContainer: React.FC<Props> = (props): React.ReactElement => {
 
   const chatContainerClass = props.visible ? `chat-container-visible` : 'chat-container';
   return (
-    <div className={style[chatContainerClass]}>
+    <div className={style[chatContainerClass] + " shadow-25"}>
       <div className={style['chat-wrapper']}>
         <div className={style['chat']}>
           {messages.map((m, i) => (

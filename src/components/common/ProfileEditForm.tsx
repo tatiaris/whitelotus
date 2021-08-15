@@ -23,7 +23,7 @@ export const ProfileEditForm: React.FC<ProfileEditFormProps> = (props): React.Re
       setVisible(false);
       socket.emit('update_username', { room_id, username: userInfo.username, newUsername: updatedUsername });
       setUpdatedUsername('');
-      (document.getElementById('username-input') as HTMLInputElement).value = '';
+      (document.getElementById('player-input') as HTMLInputElement).value = '';
     }
   };
 
@@ -34,7 +34,7 @@ export const ProfileEditForm: React.FC<ProfileEditFormProps> = (props): React.Re
         <br />
       </div>
       <div>
-        <input onChange={(e) => setUpdatedUsername(e.target.value.trim())} type="text" name="username" id="username-input" placeholder="readyPlayerOne" />
+        <input onChange={(e) => setUpdatedUsername(e.target.value.trim())} type="text" name="playername" id="player-input" placeholder="readyPlayerOne" />
       </div>
       <button type="submit">UPDATE</button>
     </form>
