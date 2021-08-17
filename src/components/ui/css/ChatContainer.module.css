@@ -1,19 +1,19 @@
 .chat-container, .chat-container-visible {
   background: linear-gradient(45deg, rgba(213,35,103,1) 0%, rgba(255,160,122,1) 100%);
   position: absolute;
-  height: calc(100vh - 5% - 20px);
   padding: 10px;
   width: 300px;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
+  right: 10px;
 }
 .chat-container {
+  height: 0px !important;
   top: calc(100% + 40px);
-  right: 0;
 }
 .chat-container-visible {
+  height: calc(100vh - 5% - 20px);
   top: calc(5% + 20px);
-  right: 10px;
 }
 .chat-wrapper {
   width: 100%;
