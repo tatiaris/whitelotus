@@ -10,13 +10,18 @@ export interface joiningData {
 export interface PlayerObj {
   username: string;
   picString: string;
-  admin: boolean;
 }
 
 export interface roomJsonObj {
   totalPlayers: number;
+  currentAdmin: string;
   players: Record<string, PlayerObj>;
   spectators: Record<string, PlayerObj>;
   gameType: string;
   inProgress: boolean;
+}
+
+export interface notificationObj {
+  content: string;
+  type: string;
 }

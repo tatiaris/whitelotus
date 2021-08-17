@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { socket } from '../../../util/socket';
 import Table from '../../components/common/Table';
-import ChatContainer from '../../components/common/ChatContainer';
 import { navigatePath } from '../../components/Helper';
 import { joiningData, PlayerObj, roomJsonObj } from '../../components/interfaces';
 import RoomNotFound from '../../components/common/RoomNotFound';
 import Loading from '../../components/common/Loading';
+import NotificationContainer from '../../components/common/NotificationContainer';
 
 /**
  * Room Page
@@ -19,12 +19,12 @@ export const Room = () => {
   const [roomFound, setRoomFound] = useState(-1);
   const [userInfo, setUserInfo] = useState<PlayerObj>({
     username: '',
-    picString: '',
-    admin: false
+    picString: ''
   });
   const [roomInfo, setRoomInfo] = useState<roomJsonObj>({
     gameType: 'none',
     totalPlayers: 1,
+    currentAdmin: '',
     players: {},
     spectators: {},
     inProgress: false
@@ -65,6 +65,7 @@ export const Room = () => {
     return (
       <div style={{ display: 'flex', width: '100vw', height: '100vh' }}>
         <Table data={{ room_id: room_id.toString(), roomInfo, userInfo: userInfo }} />
+        <NotificationContainer />
       </div>
     );
   }

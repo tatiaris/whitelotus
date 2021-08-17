@@ -1,0 +1,33 @@
+.default .notification-container, .default .notification-container-visible {
+  background-color: white;
+}
+.success .notification-container, .success .notification-container-visible {
+  background-color: rgba(35,213,171,1);
+}
+.danger .notification-container, .danger .notification-container-visible {
+  background-color: rgb(255, 100, 100);
+}
+.server .notification-container, .server .notification-container-visible {
+  background-color: rgb(75, 200, 255);
+}
+.notification-container, .notification-container-visible {
+  background-color: white;
+  position: fixed;
+  padding: 10px;
+  min-height: 47px;
+  border-radius: 5px;
+  width: 350px;
+  left: calc(50% - 175px);
+}
+.notification-container {
+  top: -50px;
+  opacity: 0;
+}
+.notification-container-visible {
+  top: 10px;
+  z-index: 10;
+  opacity: 1;
+}
+.notification-container-visible:hover {
+  cursor: pointer;
+}

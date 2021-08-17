@@ -4,8 +4,8 @@
   height: calc(100vh - 5% - 20px);
   padding: 10px;
   width: 300px;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 .chat-container {
   top: calc(100% + 40px);
@@ -18,7 +18,7 @@
 .chat-wrapper {
   width: 100%;
   height: calc(100% - 5% - 20px);
-  padding: 10px 0;
+  padding-bottom: 10px;
 }
 .chat {
   display: flex;

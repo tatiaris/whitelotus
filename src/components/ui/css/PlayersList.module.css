@@ -4,8 +4,18 @@
   height: calc(100vh - 5% - 20px);
   padding: 10px;
   width: 300px;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+.title-container {
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(45deg, rgba(35,166,213,1) 0%, rgba(35,213,171,1) 78%);
+  padding: 10px 0;
+  border-radius: 5px;
+  font-weight: bold;
 }
 .players-container {
   top: calc(100% + 40px);
@@ -25,45 +35,37 @@
   flex-direction: column;
   gap: 10px;
   width: 100%;
-  height: 100%;
-  overflow: scroll;
-  scrollbar-width: none;
+  padding: 10px 0;
 }
-.msg-inp-container {
-  width: 100%;
-  height: 7%;
-  min-height: 50px;
+.player {
+  display: flex;
+  background-color: white;
   border-radius: 5px;
   overflow: hidden;
 }
-.form {
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-.inp {
-  width: 75%;
-  height: 100%;
-  border: none;
-  padding: 0;
-  padding-left: 15px;
-  font-size: 1rem;
-}
-.send-btn {
-  width: 25%;
-  height: 100%;
-  background: linear-gradient(45deg, rgba(35,166,213,1) 0%, rgba(35,213,171,1) 78%);
-  border-radius: 0px !important;
+.player-name {
   font-weight: bold;
 }
-.content {
-  width: max-content;
+.details-container {
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, yellow 100%);
+  width: calc(100% - 50px);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.kick-btn {
+  height: 100%;
   background-color: white;
-  padding: 2px 15px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
-  max-width: 100%;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.kick-btn:hover {
+  background-color: rgb(255, 100, 100);
+}
+.label {
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
 }
 
 @media (max-width: 550px) {
