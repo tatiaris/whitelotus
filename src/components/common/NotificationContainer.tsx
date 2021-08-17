@@ -23,9 +23,11 @@ export const NotificationContainer = (): React.ReactElement => {
       setType(notifType);
       setVisible(true);
     }, 1000);
-  }
+  };
 
-  const handleClick = () => { setVisible(false) }
+  const handleClick = () => {
+    setVisible(false);
+  };
 
   useEffect(() => {
     socket.on('notification', sendNotification);
@@ -33,7 +35,7 @@ export const NotificationContainer = (): React.ReactElement => {
 
   return (
     <div className={style[type]}>
-      <div id="notification-container" onClick={handleClick} onKeyDown={handleClick} role="presentation" className={style[`notification-container${visible ? '-visible' : ''}`] + " shadow-25"}>
+      <div id="notification-container" onClick={handleClick} onKeyDown={handleClick} role="presentation" className={style[`notification-container${visible ? '-visible' : ''}`] + ' shadow-25'}>
         {content}
       </div>
     </div>

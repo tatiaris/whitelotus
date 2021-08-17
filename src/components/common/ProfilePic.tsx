@@ -30,7 +30,7 @@ export const ProfilePic: React.FC<Props> = (props): React.ReactElement => {
     }
   }
 
-  return <div style={{ width: `${width}px`, height: `${height}px`, display: 'flex', flexWrap: 'wrap', borderRadius: "5px", overflow: "hidden" }}>{picStringArr}</div>;
+  return <div style={{ width: `${width}px`, height: `${height}px`, display: 'flex', flexWrap: 'wrap', borderRadius: '5px', overflow: 'hidden' }}>{picStringArr}</div>;
 };
 
 export default ProfilePic;

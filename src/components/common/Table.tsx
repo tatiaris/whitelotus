@@ -63,7 +63,9 @@ export const Table: React.FC<TableProps> = (props): React.ReactElement => {
           </button>
         </div>
         <div className={style['game-nav']}>
-          <button onClick={() => setPlayersVisible(!playersVisible)} className="shadow-25">Players</button>
+          <button onClick={() => setPlayersVisible(!playersVisible)} className="shadow-25">
+            Players
+          </button>
           <button onClick={() => setChatVisible(!chatVisible)} className="shadow-25">
             Chat
           </button>

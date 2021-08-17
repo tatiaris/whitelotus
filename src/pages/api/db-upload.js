@@ -5,8 +5,8 @@ import { insertOneObject } from './helper';
 const handler = nextConnect();
 
 handler.get(async (req, res) => {
-  inventory.forEach(element => {
-    await insertOneObject("items", element);
+  inventory.forEach((element) => {
+    await insertOneObject('items', element);
   });
 });
 

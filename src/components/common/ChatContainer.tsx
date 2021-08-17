@@ -40,7 +40,7 @@ export const ChatContainer: React.FC<Props> = (props): React.ReactElement => {
 
   const chatContainerClass = props.visible ? `chat-container-visible` : 'chat-container';
   return (
-    <div className={style[chatContainerClass] + " shadow-25"}>
+    <div className={style[chatContainerClass] + ' shadow-25'}>
       <div className={style['chat-wrapper']}>
         <div className={style['chat']}>
           {messages.map((m, i) => (
