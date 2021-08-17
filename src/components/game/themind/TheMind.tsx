@@ -50,7 +50,7 @@ export const TheMind: React.FC<TableProps> = (props) => {
   }, []);
 
   if (!roomInfo.inProgress) {
-    return userInfo.admin ? (
+    return userInfo.username == roomInfo.currentAdmin ? (
       <div>
         Please press the <b>start game</b> button to start the game
       </div>
