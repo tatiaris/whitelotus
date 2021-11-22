@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { socket } from '../../../../util/socket';
 import { TableProps } from '../../common/Table';
 import * as style from '../../ui/css/TheMind.module.css';
+import gameInfo from '../../../constants/gameInfo';
 
 /**
  * TheMind component
@@ -30,6 +31,18 @@ export const TheMind: React.FC<TableProps> = (props) => {
   const [privateGameData, setPrivateGameData] = useState<theMindPrivateData>({ cards: [] });
   const [publicGameData, setPublicGameData] = useState<theMindPublicData>(defaultTheMindPublicData);
 
+  const openGameInfoModal = () => {
+    console.log(`${roomInfo.gameType} rules:\n\n${gameInfo[roomInfo.gameType].rules}`);
+  };
+
+  const startGame = () => {
+    socket.emit('start_game', { room_id });
+  };
+
+  const endGame = () => {
+    socket.emit('end_game', { room_id });
+  };
+
   const gameHasEnded = () => {
     setPublicGameData(defaultTheMindPublicData);
   };
@@ -53,6 +66,10 @@ export const TheMind: React.FC<TableProps> = (props) => {
     return userInfo.username == roomInfo.currentAdmin ? (
       <div>
         Please press the <b>start game</b> button to start the game
+        game: {roomInfo.gameType} <button onClick={openGameInfoModal}>info</button>{' '}
+        <div>
+          {roomInfo.currentAdmin == userInfo.username ? <>{roomInfo.inProgress ? <button onClick={endGame}>end game</button> : <button onClick={startGame}>start game</button>}</> : <></>}
+        </div>
       </div>
     ) : (
       <div>Please wait for the admin to start the game</div>
