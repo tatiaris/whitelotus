@@ -41,8 +41,8 @@ export default function Home() {
             </p>
           </div>
           <div className="flex-center">
-            <select className={`${styles.select} text-center`} onBlur={(e) => setGameId(e.currentTarget.value)} name="game" id="game">
-              <option value="choose" selected>
+            <select defaultValue="choose" className={`${styles.select} text-center`} onBlur={(e) => setGameId(e.currentTarget.value)} name="game" id="game">
+              <option value="choose">
                 Choose Game
               </option>
               <option value="the-mind">The Mind</option>

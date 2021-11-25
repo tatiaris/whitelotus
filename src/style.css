@@ -90,3 +90,17 @@ input:focus-visible {
   font-weight: bold;
 }
 /* PLAYING CARD END */
+
+/* Common Components in games START */
+.game-info-btn {
+  background: linear-gradient(45deg, rgb(255, 137, 122) 0%, rgba(255,160,122,1) 100%);
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.game-rules-container {
+  padding: 0 10px;
+}

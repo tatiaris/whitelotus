@@ -12,7 +12,10 @@ export const Modal: React.FC<ModalProps> = (props): React.ReactElement => {
   const { visible, content, setVisible } = props;
 
   const backdropClicked = (e) => {
-    if (e.target == document.getElementById('modal-backdrop')) setVisible(false);
+    console.log('backdrop clicked', e.target);
+    if (e.target.id == 'modal-backdrop') {
+      setVisible(false);
+    }
   };
 
   return (

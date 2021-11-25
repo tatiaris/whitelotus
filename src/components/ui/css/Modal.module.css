@@ -14,7 +14,6 @@
 }
 .modal-box {
   display: flex;
-  align-items: center;
   width: 30%;
   height: max-content;
   min-width: 300px;

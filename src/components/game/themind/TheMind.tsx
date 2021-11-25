@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { socket } from '../../../../util/socket';
 import { TableProps } from '../../common/Table';
-import * as style from '../../ui/css/TheMind.module.css';
+import * as style from './TheMind.module.css';
 import gameInfo from '../../../constants/gameInfo';
+import Modal from '../../common/Modal';
 
 /**
  * TheMind component
@@ -30,9 +31,11 @@ export const TheMind: React.FC<TableProps> = (props) => {
   const { room_id, userInfo, roomInfo } = props.data;
   const [privateGameData, setPrivateGameData] = useState<theMindPrivateData>({ cards: [] });
   const [publicGameData, setPublicGameData] = useState<theMindPublicData>(defaultTheMindPublicData);
+  const [infoModalVisible, setInfoModalVisible] = useState(false);
 
   const openGameInfoModal = () => {
     console.log(`${roomInfo.gameType} rules:\n\n${gameInfo[roomInfo.gameType].rules}`);
+    setInfoModalVisible(true)
   };
 
   const startGame = () => {
@@ -64,19 +67,23 @@ export const TheMind: React.FC<TableProps> = (props) => {
 
   if (!roomInfo.inProgress) {
     return userInfo.username == roomInfo.currentAdmin ? (
-      <div>
+      <div className={style['gameContainer']}>
         Please press the <b>start game</b> button to start the game
-        game: {roomInfo.gameType} <button onClick={openGameInfoModal}>info</button>{' '}
+        game: {roomInfo.gameType} <button className="game-info-btn shadow-25" onClick={openGameInfoModal}>info</button>{' '}
         <div>
           {roomInfo.currentAdmin == userInfo.username ? <>{roomInfo.inProgress ? <button onClick={endGame}>end game</button> : <button onClick={startGame}>start game</button>}</> : <></>}
         </div>
+        <Modal visible={infoModalVisible} setVisible={setInfoModalVisible} content={gameInfo[roomInfo.gameType].rules} />
       </div>
     ) : (
-      <div>Please wait for the admin to start the game</div>
+      <div>
+        <div className={style['gameContainer']}>Please wait for the admin to start the game</div>
+        <Modal visible={infoModalVisible} setVisible={setInfoModalVisible} content={gameInfo[roomInfo.gameType].rules} />
+      </div>
     );
   }
   return (
-    <div>
+    <div className={style['gameContainer']}>
       <div>Current Level: {publicGameData.level}</div>
       <div>Total Cards: {publicGameData.totalCards}</div>
       <div>Cards Remaining: {publicGameData.cardsRemaining}</div>
